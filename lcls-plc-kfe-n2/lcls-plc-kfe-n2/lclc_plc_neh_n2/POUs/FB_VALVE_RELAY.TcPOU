@@ -2,43 +2,30 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_VALVE_RELAY" Id="{e2531ff2-ea72-4542-bd8f-7299f2dc48b9}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_VALVE_RELAY
-
-VAR
-// EL2624 Relayu Logic Here
-	{attribute 'pytmc' := 'pv: XBD:N2:VRC:01'}
-	{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output'}
-	rawOutputRelayChan1 AT %Q*: BOOL;
-
-	{attribute 'pytmc' := 'pv: XBD:N2:VRC:02'}
-	{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 2^Output'}
-	rawOutputRelayChan3 AT %Q*: BOOL;
-	
-	{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 1^Input'}
-	bCloseRBV AT %I* : BOOL;
-	{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 2^Input'}
-	bOpenRBV AT %I* : BOOL;
-	{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 3^Input'}
-	bMovingRBV AT %I* : BOOL;
-	
-	b_open : BOOL;
-
-
-
-
-END_VAR
-
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	b_open : BOOL; // control variable
+	// EL2624 Relayu Logic Here
+
+	rawOutputRelayChan1 AT %Q*: BOOL;
+	rawOutputRelayChan3 AT %Q*: BOOL;
+	bCloseRBV AT %I* : BOOL;
+	bOpenRBV AT %I* : BOOL;
+	bMovingRBV AT %I* : BOOL;
+	
+	tActuateTime : TIME := T#24h;
 	fbValveTimer : TON;
 	iState: INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-fbValveTimer(IN:=TRUE); //RESTART TIMER
+
+
+fbValveTimer(IN:=TRUE, PT:=tActuateTime); //RESTART TIMER
 
 CASE iState OF
     0: // INIT
@@ -48,16 +35,14 @@ CASE iState OF
     1: // NOMINAL
 	ACTUATE_VALVE(b_open); 
  
-	IF fbValveTimer.Q THEN
-		iState := 2;
-	END_IF
+	IF fbValveTimer.Q THEN iState := 2; END_IF
 	
 	2: // Do the opposite of current valve state
 	IF bCloseRBV THEN ACTUATE_VALVE(TRUE);END_IF
 	IF bOpenRBV THEN ACTUATE_VALVE(FALSE);END_IF
 	IF bMovingRBV THEN iState := 3; END_IF; // Only transition when we have started to move
 	
-	3: // Reset timer and Once valve has stopped moving.
+	3: // Go back to init to reset timer and return valve to previous state.
 	IF NOT bMovingRBV THEN iState := 0; END_IF;
 
 END_CASE
