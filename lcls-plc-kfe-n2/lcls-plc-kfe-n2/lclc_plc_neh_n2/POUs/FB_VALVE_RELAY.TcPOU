@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_VALVE_RELAY" Id="{e2531ff2-ea72-4542-bd8f-7299f2dc48b9}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_VALVE_RELAY
 
@@ -21,11 +21,8 @@ VAR
 	bMovingRBV AT %I* : BOOL;
 	
 	b_open : BOOL;
-	b_complete: BOOL;
-	iState: INT; // init = 0, nominsl = 1, timer = 2
-	iPosState: INT; // 0 = Moving, 1 = CLOSED; 2 = OPEN; 
-	bPrevPos : BOOL;
-	bMaintenanceMode: BOOL;
+
+
 
 
 END_VAR
@@ -36,7 +33,7 @@ VAR_OUTPUT
 END_VAR
 VAR
 	fbValveTimer : TON;
-    fbCloseValveTimer : TOF;
+	iState: INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -47,29 +44,22 @@ CASE iState OF
     0: // INIT
     fbValveTimer(IN:=FALSE); //RESTART TIMER
     iState := 1;
-	iPosState := 1; // assuming initial state is closed
 
     1: // NOMINAL
-	ACTUATE_VALVE(b_open := b_open); 
-	// tick timer check if elapsed
+	ACTUATE_VALVE(b_open); 
  
 	IF fbValveTimer.Q THEN
 		iState := 2;
 	END_IF
 	
-	2: // TIMER
-	IF iPosState = 2 THEN // if closed
-		ACTUATE_VALVE(b_open := TRUE);
-	ELSIF iPosState = 1 THEN // if open close
-		ACTUATE_VALVE(b_open := FALSE);
-	END_IF	
-	iState := 3;
+	2: // Do the opposite of current valve state
+	IF bCloseRBV THEN ACTUATE_VALVE(TRUE);END_IF
+	IF bOpenRBV THEN ACTUATE_VALVE(FALSE);END_IF
+	IF bMovingRBV THEN iState := 3; END_IF; // Only transition when we have started to move
 	
-	3:
-		iPosState := 1;
-	IF bMovingRBV THEN
-		iState := 0;
-	END_IF
+	3: // Reset timer and Once valve has stopped moving.
+	IF NOT bMovingRBV THEN iState := 0; END_IF;
+
 END_CASE
 
 ]]></ST>
@@ -81,8 +71,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[
-IF b_open THEN
+        <ST><![CDATA[IF b_open THEN
 	rawOutputRelayChan1 := FALSE;
 	rawOutputRelayChan3 := TRUE;
 ELSE
@@ -91,41 +80,5 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_VALVE_RELAY">
-      <LineId Id="158" Count="0" />
-      <LineId Id="251" Count="0" />
-      <LineId Id="163" Count="0" />
-      <LineId Id="75" Count="2" />
-      <LineId Id="79" Count="0" />
-      <LineId Id="250" Count="0" />
-      <LineId Id="81" Count="1" />
-      <LineId Id="184" Count="0" />
-      <LineId Id="154" Count="0" />
-      <LineId Id="156" Count="0" />
-      <LineId Id="153" Count="0" />
-      <LineId Id="152" Count="0" />
-      <LineId Id="117" Count="0" />
-      <LineId Id="150" Count="0" />
-      <LineId Id="118" Count="0" />
-      <LineId Id="133" Count="0" />
-      <LineId Id="135" Count="1" />
-      <LineId Id="138" Count="0" />
-      <LineId Id="119" Count="0" />
-      <LineId Id="224" Count="0" />
-      <LineId Id="170" Count="0" />
-      <LineId Id="210" Count="0" />
-      <LineId Id="248" Count="0" />
-      <LineId Id="217" Count="0" />
-      <LineId Id="221" Count="0" />
-      <LineId Id="225" Count="0" />
-      <LineId Id="32" Count="0" />
-      <LineId Id="178" Count="0" />
-      <LineId Id="172" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_VALVE_RELAY.ACTUATE_VALVE">
-      <LineId Id="15" Count="0" />
-      <LineId Id="7" Count="5" />
-      <LineId Id="17" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
