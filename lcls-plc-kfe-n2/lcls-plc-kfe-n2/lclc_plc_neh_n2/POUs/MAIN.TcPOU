@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="MAIN" Id="{33620bff-f8ff-418a-9b35-0303bd8eb7b6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+    fbGetmA: FB_AnalogInput;
+    fmA: LREAL;
+    {attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 1^Value'}
+    rawInputmA AT %I*: INT;
+
+
+    {attribute 'pytmc' := 'pv: XBD:N2:MAX_MASS'}
+    maxMass: LREAL;
+    {attribute 'pytmc' := 'pv: XBD:N2:MIN_MASS'}
+    minMass: LREAL;
+    {attribute 'pytmc' := 'pv: XBD:N2:CURRENT_MASS'}
+    fMassofGas: LREAL;
+
+
+
+    // EL2624 Relayu Logic Here
+    {attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output'}
+    rawOutputRelayChan1 AT %Q*: BOOL;
+
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbGetmA(
+    iRaw := rawInputmA,
+    iTermBits := 12,
+    fTermMax := 20,
+    fTermMin := 4,
+    fReal => fmA
+);
+
+maxMass := 500;
+minMass := 0;
+
+fMassofGas := (fmA - 4.0) / 16.0 * maxMass + minMass;
+
+rawOutputRelayChan1 := TRUE;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
