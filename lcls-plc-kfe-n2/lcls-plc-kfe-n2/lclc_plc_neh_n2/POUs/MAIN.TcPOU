@@ -17,7 +17,10 @@ VAR
     fMassofGas: LREAL;
 	{attribute 'pytmc' := 'pv: XBD:N2:MAINTENANCE_MODE'}
 	bMaintenanceMode : BOOL := FALSE;
-
+	
+	{attribute 'pytmc' := 'pv: XBD:N2:LOW_LEVEL'}
+	fMassLowLevl : LREAL := maxMass / 2;
+	bMassIsLow : BOOL := FALSE;
 
 
     // EL2624 Relayu Logic Here
@@ -70,7 +73,17 @@ CASE iState OF
 	
 	2: // OP MODE
 	
-	rawOutputRelayChan1 := fbCloseValveTimer.Q;
+	IF fMassofGas < fMassLowLevl THEN bMassIsLow := TRUE; ELSE bMassIsLow := FALSE; END_IF;
+		
+	rawOutputRelayChan1 := NOT bMassIsLow; // OPEN IF MASS IS NOT LOW and CLOSE IF MASS IS LOW
+	
+	IF bMassIsLow AND fbCloseValveTimer.Q THEN
+		rawOutputRelayChan1 := fbCloseValveTimer.Q;
+	END_IF
+	
+	IF NOT bMassIsLow AND fbCloseValveTimer.Q THEN
+		rawOutputRelayChan1 := NOT fbCloseValveTimer.Q;
+	END_IF
 	
 	// ACTUAVE VALVE EVERY 24 HOURS 
 	IF fbValveTimer.Q THEN
