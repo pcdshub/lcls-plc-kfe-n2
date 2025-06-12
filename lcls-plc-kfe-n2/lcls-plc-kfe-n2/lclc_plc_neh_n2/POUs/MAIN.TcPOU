@@ -37,13 +37,12 @@ END_VAR
 	maxMass := 500;
 	minMass := 0;
 	bInit := FALSE;
-	fbValveTimer.PT := T#24h;
+	fbValveTimer.PT := T#1m; // SET FOR 1 MIN FOR TESTING
 	fbCloseValveTimer.PT := T#1s; // TIME VALVE SHOULD REMAIN OPEN
 END_IF
 
 fbValveTimer(IN:=TRUE); // RUN TIMER
 fbCloseValveTimer(IN:= FALSE); // RUN OFF TIMER
-
 
 fbGetmA(
     iRaw := rawInputmA,
@@ -57,7 +56,7 @@ fMassofGas := (fmA - 4.0) / 16.0 * maxMass + minMass;
 
 CASE iState OF
 	0: // INIT
-	fbValveTimer.IN := FALSE; // RESTART TIMER
+	fbValveTimer(IN:=FALSE); //RESTART TIMER
 	IF NOT bMaintenanceMode THEN
 		iState := 2;
 	END_IF
@@ -65,7 +64,7 @@ CASE iState OF
 	1: // MAINTINANCE MODE
 	IF NOT bMaintenanceMode THEN
 		iState := 0;
-		fbCloseValveTimer.IN := TRUE; // ACTUATE VALE AFTER EXIT MAINTINACE MODE
+		fbCloseValveTimer(IN:= TRUE); // ACTUATE VALE AFTER EXIT MAINTINACE MODE
 	END_IF
 	
 	2: // OP MODE
@@ -74,12 +73,13 @@ CASE iState OF
 	
 	// ACTUAVE VALVE EVERY 24 HOURS 
 	IF fbValveTimer.Q THEN
-		fbValveTimer.IN := FALSE; // RESTART TIMER
-		fbCloseValveTimer.IN := TRUE; // START CLOSE TIMER
+		fbValveTimer(IN:=FALSE); //RESTART TIMER
+		fbCloseValveTimer(IN:= TRUE); // RUN OFF TIMER
 	END_IF
 	
-	IF NOT bMaintenanceMode THEN
+	IF bMaintenanceMode THEN
 		iState := 1;
+		rawOutputRelayChan1 := FALSE; // CLOSE VALVE WHEN ENTERING MAINTINANCE MODE
 	END_IF
 END_CASE
 
