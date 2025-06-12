@@ -44,7 +44,6 @@ END_IF
 fbValveTimer(IN:=TRUE); // RUN TIMER
 fbCloseValveTimer(IN:= FALSE); // RUN OFF TIMER
 
-rawOutputRelayChan1 := fbCloseValveTimer.Q;
 
 fbGetmA(
     iRaw := rawInputmA,
@@ -70,6 +69,9 @@ CASE iState OF
 	END_IF
 	
 	2: // OP MODE
+	
+	rawOutputRelayChan1 := fbCloseValveTimer.Q;
+	
 	// ACTUAVE VALVE EVERY 24 HOURS 
 	IF fbValveTimer.Q THEN
 		fbValveTimer.IN := FALSE; // RESTART TIMER
