@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_VALVE_RELAY" Id="{e2531ff2-ea72-4542-bd8f-7299f2dc48b9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_VALVE_RELAY
+
+VAR
+// EL2624 Relayu Logic Here
+{attribute 'pytmc' := 'pv: XBD:N2:VRC:01'}
+{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output'}
+rawOutputRelayChan1 AT %Q*: BOOL;
+
+{attribute 'pytmc' := 'pv: XBD:N2:VRC:02'}
+{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 3^Output'}
+rawOutputRelayChan3 AT %Q*: BOOL;
+
+END_VAR
+
+VAR_INPUT
+b_open : BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF b_open THEN
+    rawOutputRelayChan1 := TRUE;
+    rawOutputRelayChan3 := FALSE;
+ELSE
+    rawOutputRelayChan1 := FALSE;
+    rawOutputRelayChan3 := TRUE;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
