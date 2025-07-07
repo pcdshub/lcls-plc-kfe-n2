@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="MAIN" Id="{33620bff-f8ff-418a-9b35-0303bd8eb7b6}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
@@ -44,7 +44,7 @@ END_IF
 fbValveTimer(IN:=TRUE); // RUN TIMER
 fbCloseValveTimer(IN:= FALSE); // RUN OFF TIMER
 
-fbValveRelay(b_open := FALSE);
+fbValveRelay();
 
 fbGetmA(
     iRaw := rawInputmA,
@@ -98,5 +98,9 @@ END_CASE
 
 ]]></ST>
     </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="3" Count="62" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
