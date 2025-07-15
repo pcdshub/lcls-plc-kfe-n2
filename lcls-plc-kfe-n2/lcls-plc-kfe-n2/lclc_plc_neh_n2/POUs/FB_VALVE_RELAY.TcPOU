@@ -61,9 +61,12 @@ END_VAR
     rawOutputRelayChan1 := FALSE;
     rawOutputRelayChan3 := TRUE;
 ELSE
-    rawOutputRelayChan1 := TRUE;
-    rawOutputRelayChan3 := FALSE;
+	rawOutputRelayChan1 := TRUE;
+	rawOutputRelayChan3 := FALSE;
 END_IF
+
+// prevent valve from not being actuated for long time.
+fbValveTimer(IN:=FALSE); // Valve has been actuated; reset timer.
 
 ]]></ST>
       </Implementation>

@@ -1,7 +1,11 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
 	<Project GUID="{E7B2A131-7601-4CB6-9E2A-2C803CB2E77E}" Name="lclc_plc_neh_n2" PrjFilePath="..\..\lclc_plc_neh_n2\lclc_plc_neh_n2.plcproj" TmcFilePath="..\..\lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+<<<<<<< HEAD
 		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{A78A1EFB-4DBA-4126-B7B2-640EF0A29567}">
+=======
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{1673B273-1769-2E0D-D447-2AB830B4369D}">
+>>>>>>> 1032373 (inital state machine for main)
 			<Name>lclc_plc_neh_n2 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">

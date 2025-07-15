@@ -8,19 +8,88 @@ VAR
         .bInduceButton :=
         .bFinishExchangeButton :=
 
-        .fbValveRelay.rawOutputRelayChan1 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output;
-        .fbValveRelay.rawOutputRelayChan3 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 2^Output;
-        .fbValveRelay.bCloseRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 1^Input;
-        .fbValveRelay.bOpenRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 2^Input;
-        .fbValveRelay.bMovingRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 3^Input;
+	fPress : LREAL;
+	
+	bInduceButton AT %I*	: BOOL;
+	bFinishExchangeButton AT %I*	: BOOL;
+	fMinPressureThresh 		: LREAL;
+	fMinMassThresh			: LREAL;
+	fWarningThresh: LREAL;
 
-    '}
-    fbN2_01 : FB_N2;
+
+    {attribute 'pytmc' := 'pv: XBD:N2:MAX_MASS'}
+    maxMass: LREAL;
+    {attribute 'pytmc' := 'pv: XBD:N2:MIN_MASS'}
+    minMass: LREAL;
+    {attribute 'pytmc' := 'pv: XBD:N2:CURRENT_MASS'}
+    fMassofGas: LREAL;
+
+    {attribute 'pytmc' := 'pv: XBD:N2:LOW_LEVEL'}
+    fMassLowLevl : LREAL := maxMass / 2;
+    bMassIsLow : BOOL := FALSE;
+
+	{attribute 'TcLinkTo' := '
+		.rawOutputRelayChan1 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output;
+		.rawOutputRelayChan3 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 2^Output;
+		.bCloseRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 1^Input;
+		.bOpenRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 2^Input;
+		.bMovingRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 3^Input;
+	'}
+    fbValveRelay : FB_VALVE_RELAY;
+
+    bInit : BOOL := TRUE;
+    iState : INT  := 0;
 
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbN2_01();]]></ST>
+      <ST><![CDATA[IF bInit THEN
+    maxMass := 500;
+    minMass := 0;
+    bInit := FALSE;
+END_IF
+
+fbValveRelay();
+
+fbGetmA(
+    iRaw := rawInputmA,
+    iTermBits := 12,
+    fTermMax := 20,
+    fTermMin := 4,
+    fReal => fmA
+);
+
+fMassofGas := (fmA - 4.0) / 16.0 * maxMass + minMass;
+
+CASE iState OF
+	-1: // INIT
+	fbValveRelay.ACTUATE_VALVE(FALSE);
+	 IF ((fPress > fMinPressureThresh) AND (fmA > fMinMassThresh)) THEN fbValveRelay.ACTUATE_VALVE(TRUE); END_IF
+	iState := 0;
+	
+    0: // Nominal
+    IF  ((fPress < fMinPressureThresh) OR (fmA < fMinMassThresh) OR (bInduceButton)) THEN
+		// TURN LIGHT RED
+        iState := 1;
+		fbValveRelay.ACTUATE_VALVE(FALSE);
+    END_IF
+	
+	IF (fmA < fWarningThresh) THEN 
+		// TURN ON YELLOW LIGHT
+	END_IF
+	
+    1: // EXCHANGE MODE
+	IF  ((fPress > fMinPressureThresh) AND (fmA > fMinMassThresh) AND (bFinishExchangeButton)) THEN
+        iState := 0;
+		// TURN OFF RED LIGHT
+    END_IF
+	
+	
+
+END_CASE
+
+
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
