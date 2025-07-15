@@ -15,6 +15,8 @@ VAR
 	fMinPressureThresh 		: LREAL;
 	fMinMassThresh			: LREAL;
 	fWarningThresh: LREAL;
+	eLEDMode : ENUM_LED_MODES;
+	bValveTimerQ : BOOL;
 
 
     {attribute 'pytmc' := 'pv: XBD:N2:MAX_MASS'}
@@ -49,7 +51,8 @@ END_VAR
     bInit := FALSE;
 END_IF
 
-fbValveRelay();
+fbValveRelay(bTimerQ=>bValveTimerQ);
+//fbLightTower(iLIGHT_MODE);
 
 fbGetmA(
     iRaw := rawInputmA,
@@ -78,9 +81,16 @@ CASE iState OF
 		// TURN ON YELLOW LIGHT
 	END_IF
 	
+	IF(bValveTimerQ) THEN
+		// FLASH YELLO LIGHT
+	END_IF
+	
     1: // EXCHANGE MODE
-	IF  ((fPress > fMinPressureThresh) AND (fmA > fMinMassThresh) AND (bFinishExchangeButton)) THEN
-        iState := 0;
+	IF (bInduceButton) THEN
+		// TURN FLASHY RED
+	END_IF
+	IF  ((bFinishExchangeButton)) THEN
+        iState := -1;
 		// TURN OFF RED LIGHT
     END_IF
 	

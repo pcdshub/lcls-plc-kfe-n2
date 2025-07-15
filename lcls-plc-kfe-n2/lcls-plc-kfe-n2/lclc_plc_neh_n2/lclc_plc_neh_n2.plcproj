@@ -14,6 +14,7 @@
     <LibraryReferences>{e4979d30-2402-4f91-a9f7-debda62140d9}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="DUTs\E_MAIN_STATE_MACHINE.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -21,6 +22,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\E_VALVE_RELAY_STATES.TcDUT">
+=======
+    <Compile Include="DUTs\ENUM_LED_MODES.TcDUT">
+>>>>>>> 3be6fe3 (added ST for LED FB)
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
