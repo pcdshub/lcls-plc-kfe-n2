@@ -1,82 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="MAIN" Id="{33620bff-f8ff-418a-9b35-0303bd8eb7b6}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-    fbGetmA: FB_AnalogInput;
-    fmA: LREAL;
-    {attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 1^Value'}
-    rawInputmA AT %I*: INT;
-
-
-    {attribute 'pytmc' := 'pv: XBD:N2:MAX_MASS'}
-    maxMass: LREAL;
-    {attribute 'pytmc' := 'pv: XBD:N2:MIN_MASS'}
-    minMass: LREAL;
-    {attribute 'pytmc' := 'pv: XBD:N2:CURRENT_MASS'}
-    fMassofGas: LREAL;
-    {attribute 'pytmc' := 'pv: XBD:N2:MAINTENANCE_MODE'}
-    bMaintenanceMode : BOOL := FALSE;
-
-    {attribute 'pytmc' := 'pv: XBD:N2:LOW_LEVEL'}
-    fMassLowLevl : LREAL := maxMass / 2;
-    bMassIsLow : BOOL := FALSE;
-
     {attribute 'TcLinkTo' := '
-        .rawOutputRelayChan1 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output;
-        .rawOutputRelayChan3 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 2^Output;
-        .bCloseRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 1^Input;
-        .bOpenRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 2^Input;
-        .bMovingRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 3^Input;
-    '}
-    fbValveRelay : FB_VALVE_RELAY;
+        .rawInputmA := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 1^Value;
+        .bInduceButton :=
+        .bFinishExchangeButton :=
 
-    bInit : BOOL := TRUE;
-    iState : INT  := 0;
+        .fbValveRelay.rawOutputRelayChan1 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output;
+        .fbValveRelay.rawOutputRelayChan3 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 2^Output;
+        .fbValveRelay.bCloseRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 1^Input;
+        .fbValveRelay.bOpenRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 2^Input;
+        .fbValveRelay.bMovingRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 3^Input;
+
+    '}
+    fbN2_01 : FB_N2;
 
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF bInit THEN
-    maxMass := 500;
-    minMass := 0;
-    bInit := FALSE;
-END_IF
-
-fbValveRelay();
-
-fbGetmA(
-    iRaw := rawInputmA,
-    iTermBits := 12,
-    fTermMax := 20,
-    fTermMin := 4,
-    fReal => fmA
-);
-
-fMassofGas := (fmA - 4.0) / 16.0 * maxMass + minMass;
-
-CASE iState OF
-    0: // INIT
-    IF NOT bMaintenanceMode THEN
-        iState := 2;
-    END_IF
-
-    1: // MAINTINANCE MODE
-    IF NOT bMaintenanceMode THEN
-        iState := 0;
-    END_IF
-
-    2: // OP MODE
-
-    IF fMassofGas < fMassLowLevl THEN bMassIsLow := TRUE; ELSE bMassIsLow := FALSE; END_IF;
-
-    IF bMaintenanceMode THEN
-        iState := 1;
-    END_IF
-END_CASE
-
-
-]]></ST>
+      <ST><![CDATA[fbN2_01();]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

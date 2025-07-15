@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="FB_LED_TOWER" Id="{a0e8d6d7-c791-4c41-83b0-d6756ae3b39b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_LED_TOWER
+VAR_INPUT
+    eLEDMode : E_LED_MODES;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

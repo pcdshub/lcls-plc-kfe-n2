@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="E_MAIN_STATE_MACHINE" Id="{04c7a38b-f2a2-42a7-8850-fcc470324d66}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_MAIN_STATE_MACHINE :
+(
+    INIT := 0,
+    NOMINAL := 1,
+    EXCHANGE_MODE := 2
+
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

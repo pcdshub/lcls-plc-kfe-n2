@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
+<<<<<<< HEAD
 <TcModuleClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2009/05/TcModuleClass" Hash="{89FF6F01-3153-2C14-6A22-0A26DF51D8E9}" GeneratedBy="TwinCAT XAE Plc">
+=======
+<TcModuleClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2009/05/TcModuleClass" Hash="{17000A49-662C-CC4F-AF9C-0613FF2DE37B}" GeneratedBy="TwinCAT XAE Plc">
+>>>>>>> 47039b5 (inital state machine for main)
   <DataTypes>
     <DataType>
       <Name Namespace="LCLS_General">ST_System</Name>
@@ -181,31 +185,53 @@
         <Name>bBusy</Name>
         <Type>BOOL</Type>
         <BitSize>8</BitSize>
+<<<<<<< HEAD
         <GetCodeOffs>79214156</GetCodeOffs>
+=======
+        <GetCodeOffs>435308</GetCodeOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </PropertyItem>
       <PropertyItem>
         <Name>bError</Name>
         <Type>BOOL</Type>
         <BitSize>8</BitSize>
+<<<<<<< HEAD
         <GetCodeOffs>79214192</GetCodeOffs>
+=======
+        <GetCodeOffs>435344</GetCodeOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </PropertyItem>
       <PropertyItem>
         <Name>hrErrorCode</Name>
         <Type GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</Type>
         <BitSize>32</BitSize>
+<<<<<<< HEAD
         <GetCodeOffs>79214200</GetCodeOffs>
+=======
+        <GetCodeOffs>435352</GetCodeOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </PropertyItem>
       <PropertyItem>
         <Name>nStringSize</Name>
         <Type>UDINT</Type>
         <BitSize>32</BitSize>
+<<<<<<< HEAD
         <GetCodeOffs>79214180</GetCodeOffs>
+=======
+        <GetCodeOffs>435332</GetCodeOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </PropertyItem>
       <PropertyItem>
         <Name>sResult</Name>
         <Type>STRING(255)</Type>
+<<<<<<< HEAD
         <BitSize>2048</BitSize>
         <GetCodeOffs>79214196</GetCodeOffs>
+=======
+        <Comment> result [UTF-8 STRING]</Comment>
+        <BitSize>2048</BitSize>
+        <GetCodeOffs>435348</GetCodeOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Properties>
           <Property>
             <Name>TcEncoding</Name>
@@ -252,6 +278,10 @@
         <ReturnBitSize>8</ReturnBitSize>
         <Parameter>
           <Name>sResult</Name>
+<<<<<<< HEAD
+=======
+          <Comment> buffer for result [UTF-8 STRING]</Comment>
+>>>>>>> 47039b5 (inital state machine for main)
           <Type ReferenceTo="true">STRING(80)</Type>
           <BitSize>32</BitSize>
         </Parameter>
@@ -1481,6 +1511,7 @@
       </Method>
     </DataType>
     <DataType>
+<<<<<<< HEAD
       <Name Namespace="LCLS_General.Tc3_EventLogger">FB_TcSourceInfo</Name>
       <BitSize>2848</BitSize>
       <Implements Namespace="LCLS_General.Tc3_EventLogger">I_TcSourceInfo</Implements>
@@ -1497,6 +1528,160 @@
         <BitSize>2048</BitSize>
         <GetCodeOffs>79214132</GetCodeOffs>
         <SetCodeOffs>79214144</SetCodeOffs>
+=======
+      <Name Namespace="LCLS_General.Tc3_EventLogger">ST_SourceInfo</Name>
+      <BitSize>2400</BitSize>
+      <SubItem>
+        <Name>guid</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000021}">GUID</Type>
+        <BitSize>128</BitSize>
+        <BitOffs>0</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>nId</Name>
+        <Type>UDINT</Type>
+        <Comment> eg.the PLC instance object ID as owner of the event object</Comment>
+        <BitSize>32</BitSize>
+        <BitOffs>128</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>sName</Name>
+        <Type>STRING(278)</Type>
+        <Comment> eg.the symbol name of the function block which created the event</Comment>
+        <BitSize>2232</BitSize>
+        <BitOffs>160</BitOffs>
+        <Properties>
+          <Property>
+            <Name>TcEncoding</Name>
+            <Value>UTF-8</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLS_General.Tc3_EventLogger">FB_SourceInfoData</Name>
+      <BitSize>2880</BitSize>
+      <Implements GUID="{F7BF6767-548B-493C-899B-06A477976F11}">ITcSourceInfo</Implements>
+      <SubItem>
+        <Name>hrInit</Name>
+        <Type GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>64</BitOffs>
+        <Properties>
+          <Property>
+            <Name>no_init</Name>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>_bCutInstancePathByLastInst</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>96</BitOffs>
+        <Properties>
+          <Property>
+            <Name>no_init</Name>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>_stSourceInfo</Name>
+        <Type Namespace="LCLS_General.Tc3_EventLogger">ST_SourceInfo</Type>
+        <BitSize>2400</BitSize>
+        <BitOffs>128</BitOffs>
+        <Properties>
+          <Property>
+            <Name>no_init</Name>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>bIdExists</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>2528</BitOffs>
+        <Properties>
+          <Property>
+            <Name>no_init</Name>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>bGuidExists</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>2536</BitOffs>
+        <Properties>
+          <Property>
+            <Name>no_init</Name>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>bSourceNameIsEqualDefault</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>2544</BitOffs>
+        <Properties>
+          <Property>
+            <Name>no_init</Name>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>bSourceNameShouldBeDefault</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>2552</BitOffs>
+        <Properties>
+          <Property>
+            <Name>no_init</Name>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>aSourceInfoData</Name>
+        <Type GUID="{02B179F9-9BBE-4D12-A24F-5E65C9CF659C}">TcSerializedSourceInfoType</Type>
+        <ArrayInfo>
+          <LBound>0</LBound>
+          <Elements>3</Elements>
+        </ArrayInfo>
+        <BitSize>288</BitSize>
+        <BitOffs>2560</BitOffs>
+        <Properties>
+          <Property>
+            <Name>no_init</Name>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>m_refCnt</Name>
+        <Type>UDINT</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>2848</BitOffs>
+        <Properties>
+          <Property>
+            <Name>conditionalshow</Name>
+          </Property>
+          <Property>
+            <Name>no_init</Name>
+          </Property>
+        </Properties>
+      </SubItem>
+      <PropertyItem>
+        <Name>nSourceId</Name>
+        <Type>UDINT</Type>
+        <BitSize>32</BitSize>
+        <GetCodeOffs>435136</GetCodeOffs>
+        <SetCodeOffs>435212</SetCodeOffs>
+      </PropertyItem>
+      <PropertyItem>
+        <Name>sSourceName</Name>
+        <Type>STRING(255)</Type>
+        <BitSize>2048</BitSize>
+        <GetCodeOffs>435200</GetCodeOffs>
+        <SetCodeOffs>435180</SetCodeOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Properties>
           <Property>
             <Name>TcEncoding</Name>
@@ -1504,6 +1689,479 @@
           </Property>
         </Properties>
       </PropertyItem>
+      <Method>
+<<<<<<< HEAD
+=======
+        <Name>TcAddRef</Name>
+        <ReturnType>UDINT</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>c++_compatible</Name>
+          </Property>
+          <Property>
+            <Name>pack_mode</Name>
+            <Value>4</Value>
+          </Property>
+          <Property>
+            <Name>show</Name>
+          </Property>
+          <Property>
+            <Name>minimal_input_size</Name>
+            <Value>4</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc">__getnSourceId</Name>
+        <ReturnType RpcDirection="out">UDINT</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Local>
+          <Name>nSourceId</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>__setbCutInstancePathByLastInst</Name>
+        <Parameter>
+          <Name>bCutInstancePathByLastInst</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Parameter>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>CopyFrom</Name>
+        <Parameter>
+          <Name>ipData</Name>
+          <Type GUID="{F7BF6767-548B-493C-899B-06A477976F11}">ITcSourceInfo</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Local>
+          <Name>nTypes</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+        <Local>
+          <Name>pData</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000018}">PVOID</Type>
+          <BitSize>32</BitSize>
+        </Local>
+        <Local>
+          <Name>cbData</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+        <Local>
+          <Name>i</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+        <Local>
+          <Name>pTypes</Name>
+          <Type GUID="{02B179F9-9BBE-4D12-A24F-5E65C9CF659C}" PointerTo="1">TcSerializedSourceInfoType</Type>
+          <BitSize>32</BitSize>
+        </Local>
+      </Method>
+      <Method>
+        <Name>GetNumTypes</Name>
+        <ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>nCount</Name>
+          <Type ReferenceTo="true">UDINT</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Properties>
+          <Property>
+            <Name>c++_compatible</Name>
+          </Property>
+          <Property>
+            <Name>pack_mode</Name>
+            <Value>4</Value>
+          </Property>
+          <Property>
+            <Name>show</Name>
+          </Property>
+          <Property>
+            <Name>minimal_input_size</Name>
+            <Value>4</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+>>>>>>> 47039b5 (inital state machine for main)
+        <Name>ExtendName</Name>
+        <Comment> extends the source name on the right side of the string by the given extension.
+ If the source name string size is exceeded nothing more is extended.
+ Function returns TRUE is the concatenation succeeded.</Comment>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>sExtension</Name>
+<<<<<<< HEAD
+=======
+          <Type ReferenceTo="true">STRING(80)</Type>
+          <BitSize>32</BitSize>
+          <Properties>
+            <Property>
+              <Name>ItemType</Name>
+              <Value>InOut</Value>
+            </Property>
+          </Properties>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>ResetToDefault</Name>
+        <Comment> resets the source info to default values (name equals ads symbol name, id equals PLC object id)</Comment>
+        <ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Local>
+          <Name>nName</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+        <Local>
+          <Name>hr</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+        <Local>
+          <Name>bCutFailed</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Local>
+      </Method>
+      <Method>
+        <Name>GetDataSize</Name>
+        <ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>cbData</Name>
+          <Type ReferenceTo="true">UDINT</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Local>
+          <Name>i</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+        <Local>
+          <Name>nDataSize</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+        <Properties>
+          <Property>
+            <Name>c++_compatible</Name>
+          </Property>
+          <Property>
+            <Name>pack_mode</Name>
+            <Value>4</Value>
+          </Property>
+          <Property>
+            <Name>show</Name>
+          </Property>
+          <Property>
+            <Name>minimal_input_size</Name>
+            <Value>4</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>CutInstancePathByLastInst</Name>
+        <Comment> returns TRUE if succeeded</Comment>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+      </Method>
+      <Method>
+        <Name>Clear</Name>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc">__setsSourceName</Name>
+        <Parameter>
+          <Name>sSourceName</Name>
+          <Type RpcDirection="in">STRING(255)</Type>
+          <BitSize>2048</BitSize>
+          <Properties>
+            <Property>
+              <Name>monitoring</Name>
+              <Value>call</Value>
+            </Property>
+            <Property>
+              <Name>TcEncoding</Name>
+              <Value>UTF-8</Value>
+            </Property>
+          </Properties>
+        </Parameter>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+          <Property>
+            <Name>TcEncoding</Name>
+            <Value>UTF-8</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>GetData</Name>
+        <ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>ppData</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000018}" PointerTo="1">PVOID</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Properties>
+          <Property>
+            <Name>c++_compatible</Name>
+          </Property>
+          <Property>
+            <Name>pack_mode</Name>
+            <Value>4</Value>
+          </Property>
+          <Property>
+            <Name>show</Name>
+          </Property>
+          <Property>
+            <Name>minimal_input_size</Name>
+            <Value>4</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>__getsourceGuid</Name>
+        <ReturnType GUID="{18071995-0000-0000-0000-000000000021}">GUID</ReturnType>
+        <ReturnBitSize>128</ReturnBitSize>
+        <Local>
+          <Name>sourceGuid</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000021}">GUID</Type>
+          <BitSize>128</BitSize>
+        </Local>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>GetTypes</Name>
+        <ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>ppSourceInfoTypes</Name>
+          <Type GUID="{02B179F9-9BBE-4D12-A24F-5E65C9CF659C}" PointerTo="2">TcSerializedSourceInfoType</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Local>
+          <Name>curIndex</Name>
+          <Type>UDINT</Type>
+          <BitSize>32</BitSize>
+        </Local>
+        <Properties>
+          <Property>
+            <Name>c++_compatible</Name>
+          </Property>
+          <Property>
+            <Name>pack_mode</Name>
+            <Value>4</Value>
+          </Property>
+          <Property>
+            <Name>show</Name>
+          </Property>
+          <Property>
+            <Name>minimal_input_size</Name>
+            <Value>4</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc">__getsSourceName</Name>
+        <ReturnType RpcDirection="out">STRING(255)</ReturnType>
+        <ReturnBitSize>2048</ReturnBitSize>
+        <Local>
+          <Name>sSourceName</Name>
+          <Type>STRING(255)</Type>
+          <BitSize>2048</BitSize>
+        </Local>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+          <Property>
+            <Name>TcEncoding</Name>
+            <Value>UTF-8</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>TcRelease</Name>
+        <ReturnType>UDINT</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Properties>
+          <Property>
+            <Name>c++_compatible</Name>
+          </Property>
+          <Property>
+            <Name>pack_mode</Name>
+            <Value>4</Value>
+          </Property>
+          <Property>
+            <Name>show</Name>
+          </Property>
+          <Property>
+            <Name>minimal_input_size</Name>
+            <Value>4</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc">__setnSourceId</Name>
+        <Parameter>
+          <Name>nSourceId</Name>
+          <Type RpcDirection="in">UDINT</Type>
+          <BitSize>32</BitSize>
+          <Properties>
+            <Property>
+              <Name>monitoring</Name>
+              <Value>call</Value>
+            </Property>
+          </Properties>
+        </Parameter>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>__setsourceGuid</Name>
+        <Parameter>
+          <Name>sourceGuid</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000021}">GUID</Type>
+          <BitSize>128</BitSize>
+        </Parameter>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>TcQueryInterface</Name>
+        <ReturnType GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</ReturnType>
+        <ReturnBitSize>32</ReturnBitSize>
+        <Parameter>
+          <Name>iid</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000025}" ReferenceTo="true">IID</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Parameter>
+          <Name>pipItf</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000018}" PointerTo="1">PVOID</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+        <Properties>
+          <Property>
+            <Name>c++_compatible</Name>
+          </Property>
+          <Property>
+            <Name>pack_mode</Name>
+            <Value>4</Value>
+          </Property>
+          <Property>
+            <Name>show</Name>
+          </Property>
+          <Property>
+            <Name>minimal_input_size</Name>
+            <Value>4</Value>
+          </Property>
+        </Properties>
+      </Method>
+      <Properties>
+        <Property>
+          <Name>PouType</Name>
+          <Value>FunctionBlock</Value>
+        </Property>
+        <Property>
+          <Name>c++_compatible</Name>
+        </Property>
+        <Property>
+          <Name>no_explicit_call</Name>
+          <Value>do not call this POU directly</Value>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+      <Name Namespace="LCLS_General.Tc3_EventLogger">FB_TcSourceInfo</Name>
+      <BitSize>2944</BitSize>
+      <Implements Namespace="LCLS_General.Tc3_EventLogger">I_TcSourceInfo</Implements>
+      <SubItem>
+        <Name>fbSrcData</Name>
+        <Type Namespace="LCLS_General.Tc3_EventLogger">FB_SourceInfoData</Type>
+        <BitSize>2880</BitSize>
+        <BitOffs>64</BitOffs>
+        <Properties>
+          <Property>
+            <Name>conditionalshow</Name>
+          </Property>
+        </Properties>
+      </SubItem>
+      <PropertyItem>
+        <Name>nId</Name>
+        <Type>UDINT</Type>
+        <BitSize>32</BitSize>
+        <GetCodeOffs>435248</GetCodeOffs>
+        <SetCodeOffs>435272</SetCodeOffs>
+      </PropertyItem>
+      <PropertyItem>
+        <Name>sName</Name>
+        <Type>STRING(255)</Type>
+        <BitSize>2048</BitSize>
+        <GetCodeOffs>435284</GetCodeOffs>
+        <SetCodeOffs>435296</SetCodeOffs>
+        <Properties>
+          <Property>
+            <Name>TcEncoding</Name>
+            <Value>UTF-8</Value>
+          </Property>
+        </Properties>
+      </PropertyItem>
+      <Method>
+        <Name>__setbCutInstancePathByLastInst</Name>
+        <Parameter>
+          <Name>bCutInstancePathByLastInst</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Parameter>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name>CopyFrom</Name>
+        <Parameter>
+          <Name>ipSourceInfo</Name>
+          <Type Namespace="LCLS_General.Tc3_EventLogger">I_TcSourceInfo</Type>
+          <BitSize>32</BitSize>
+        </Parameter>
+      </Method>
+      <Method>
+        <Name>Clear</Name>
+      </Method>
       <Method>
         <Name>ExtendName</Name>
         <Comment> extends the source name on the right side of the string by the given extension.
@@ -1513,6 +2171,7 @@
         <ReturnBitSize>8</ReturnBitSize>
         <Parameter>
           <Name>sExtension</Name>
+>>>>>>> 47039b5 (inital state machine for main)
           <Type>STRING(255)</Type>
           <BitSize>2048</BitSize>
         </Parameter>
@@ -1557,10 +2216,29 @@
         <ReturnBitSize>32</ReturnBitSize>
       </Method>
       <Method>
+<<<<<<< HEAD
         <Name>Clear</Name>
       </Method>
       <Method>
         <Name RpcEnable="plc" VTableIndex="10">__setnId</Name>
+=======
+        <Name>__getguid</Name>
+        <ReturnType GUID="{18071995-0000-0000-0000-000000000021}">GUID</ReturnType>
+        <ReturnBitSize>128</ReturnBitSize>
+        <Local>
+          <Name>guid</Name>
+          <Type GUID="{18071995-0000-0000-0000-000000000021}">GUID</Type>
+          <BitSize>128</BitSize>
+        </Local>
+        <Properties>
+          <Property>
+            <Name>property</Name>
+          </Property>
+        </Properties>
+      </Method>
+      <Method>
+        <Name RpcEnable="plc" VTableIndex="11">__setnId</Name>
+>>>>>>> 47039b5 (inital state machine for main)
         <Parameter>
           <Name>nId</Name>
           <Type RpcDirection="in">UDINT</Type>
@@ -1603,6 +2281,7 @@
         </Parameter>
       </Method>
       <Method>
+<<<<<<< HEAD
         <Name>__getguid</Name>
         <ReturnType GUID="{18071995-0000-0000-0000-000000000021}">GUID</ReturnType>
         <ReturnBitSize>128</ReturnBitSize>
@@ -1618,6 +2297,8 @@
         </Properties>
       </Method>
       <Method>
+=======
+>>>>>>> 47039b5 (inital state machine for main)
         <Name RpcEnable="plc" VTableIndex="4">__getsName</Name>
         <ReturnType RpcDirection="out">STRING(255)</ReturnType>
         <ReturnBitSize>2048</ReturnBitSize>
@@ -1637,7 +2318,11 @@
         </Properties>
       </Method>
       <Method>
+<<<<<<< HEAD
         <Name RpcEnable="plc" VTableIndex="11">__setsName</Name>
+=======
+        <Name RpcEnable="plc" VTableIndex="12">__setsName</Name>
+>>>>>>> 47039b5 (inital state machine for main)
         <Parameter>
           <Name>sName</Name>
           <Type RpcDirection="in">STRING(255)</Type>
@@ -1676,13 +2361,28 @@
     </DataType>
     <DataType>
       <Name Namespace="LCLS_General.Tc3_EventLogger">FB_TcEventBase</Name>
+<<<<<<< HEAD
       <BitSize>3424</BitSize>
+=======
+      <BitSize>3520</BitSize>
+>>>>>>> 47039b5 (inital state machine for main)
       <Implements Namespace="LCLS_General.Tc3_EventLogger">I_ArgumentsChangeListener</Implements>
       <SubItem>
         <Name>fbSourceInfo</Name>
         <Type Namespace="LCLS_General.Tc3_EventLogger">FB_TcSourceInfo</Type>
+<<<<<<< HEAD
         <BitSize>2848</BitSize>
         <BitOffs>256</BitOffs>
+=======
+        <BitSize>2944</BitSize>
+        <BitOffs>256</BitOffs>
+        <Default>
+          <SubItem>
+            <Name>.bCutInstancePathByLastInst</Name>
+            <Bool>true</Bool>
+          </SubItem>
+        </Default>
+>>>>>>> 47039b5 (inital state machine for main)
         <Properties>
           <Property>
             <Name>conditionalshow</Name>
@@ -1693,7 +2393,11 @@
         <Name>__FB_TCEVENTBASE__REQUESTEVENTCLASSNAME__FBRESULT</Name>
         <Type Namespace="LCLS_General.Tc3_EventLogger">FB_AsyncStrResult</Type>
         <BitSize>64</BitSize>
+<<<<<<< HEAD
         <BitOffs>3232</BitOffs>
+=======
+        <BitOffs>3328</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Properties>
           <Property>
             <Name>conditionalshow</Name>
@@ -1704,7 +2408,11 @@
         <Name>__FB_TCEVENTBASE__REQUESTEVENTCLASSNAME__BBUSY</Name>
         <Type>BOOL</Type>
         <BitSize>8</BitSize>
+<<<<<<< HEAD
         <BitOffs>3296</BitOffs>
+=======
+        <BitOffs>3392</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Properties>
           <Property>
             <Name>conditionalshow</Name>
@@ -1715,7 +2423,11 @@
         <Name>__FB_TCEVENTBASE__REQUESTEVENTTEXT__FBRESULT</Name>
         <Type Namespace="LCLS_General.Tc3_EventLogger">FB_AsyncStrResult</Type>
         <BitSize>64</BitSize>
+<<<<<<< HEAD
         <BitOffs>3328</BitOffs>
+=======
+        <BitOffs>3424</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Properties>
           <Property>
             <Name>conditionalshow</Name>
@@ -1726,7 +2438,11 @@
         <Name>__FB_TCEVENTBASE__REQUESTEVENTTEXT__BBUSY</Name>
         <Type>BOOL</Type>
         <BitSize>8</BitSize>
+<<<<<<< HEAD
         <BitOffs>3392</BitOffs>
+=======
+        <BitOffs>3488</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Properties>
           <Property>
             <Name>conditionalshow</Name>
@@ -1737,31 +2453,51 @@
         <Name>eSeverity</Name>
         <Type GUID="{B57D3F4A-0836-49B0-81C3-BED5F4817EC9}">TcEventSeverity</Type>
         <BitSize>16</BitSize>
+<<<<<<< HEAD
         <GetCodeOffs>79214248</GetCodeOffs>
+=======
+        <GetCodeOffs>435400</GetCodeOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </PropertyItem>
       <PropertyItem>
         <Name>ipSourceInfo</Name>
         <Type Namespace="LCLS_General.Tc3_EventLogger">I_TcSourceInfo</Type>
         <BitSize>32</BitSize>
+<<<<<<< HEAD
         <GetCodeOffs>79214228</GetCodeOffs>
+=======
+        <GetCodeOffs>435380</GetCodeOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </PropertyItem>
       <PropertyItem>
         <Name>nEventId</Name>
         <Type>UDINT</Type>
         <BitSize>32</BitSize>
+<<<<<<< HEAD
         <GetCodeOffs>79214316</GetCodeOffs>
+=======
+        <GetCodeOffs>435468</GetCodeOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </PropertyItem>
       <PropertyItem>
         <Name>nUniqueId</Name>
         <Type>UDINT</Type>
         <BitSize>32</BitSize>
+<<<<<<< HEAD
         <GetCodeOffs>79214320</GetCodeOffs>
+=======
+        <GetCodeOffs>435472</GetCodeOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </PropertyItem>
       <PropertyItem>
         <Name>sEventClassName</Name>
         <Type>STRING(255)</Type>
         <BitSize>2048</BitSize>
+<<<<<<< HEAD
         <GetCodeOffs>79214276</GetCodeOffs>
+=======
+        <GetCodeOffs>435428</GetCodeOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Properties>
           <Property>
             <Name>TcEncoding</Name>
@@ -1773,7 +2509,11 @@
         <Name>sEventText</Name>
         <Type>STRING(255)</Type>
         <BitSize>2048</BitSize>
+<<<<<<< HEAD
         <GetCodeOffs>79214324</GetCodeOffs>
+=======
+        <GetCodeOffs>435476</GetCodeOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Properties>
           <Property>
             <Name>TcEncoding</Name>
@@ -2359,14 +3099,22 @@
     </DataType>
     <DataType>
       <Name Namespace="LCLS_General.Tc3_EventLogger">FB_TcMessage</Name>
+<<<<<<< HEAD
       <BitSize>3488</BitSize>
+=======
+      <BitSize>3584</BitSize>
+>>>>>>> 47039b5 (inital state machine for main)
       <ExtendsType Namespace="LCLS_General.Tc3_EventLogger">FB_TcEventBase</ExtendsType>
       <Implements Namespace="LCLS_General.Tc3_EventLogger">I_TcMessage</Implements>
       <PropertyItem>
         <Name>nTimeSent</Name>
         <Type>ULINT</Type>
         <BitSize>64</BitSize>
+<<<<<<< HEAD
         <GetCodeOffs>79214352</GetCodeOffs>
+=======
+        <GetCodeOffs>435504</GetCodeOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Properties>
           <Property>
             <Name>TcDisplayTypeGUID</Name>
@@ -2660,7 +3408,11 @@
     </DataType>
     <DataType>
       <Name Namespace="LCLS_General">FB_LogMessage</Name>
+<<<<<<< HEAD
       <BitSize>81984</BitSize>
+=======
+      <BitSize>82560</BitSize>
+>>>>>>> 47039b5 (inital state machine for main)
       <SubItem>
         <Name>sMsg</Name>
         <Type Namespace="Tc2_System">T_MaxString</Type>
@@ -2835,38 +3587,63 @@
           <LBound>0</LBound>
           <Elements>5</Elements>
         </ArrayInfo>
+<<<<<<< HEAD
         <BitSize>17440</BitSize>
+=======
+        <BitSize>17920</BitSize>
+>>>>>>> 47039b5 (inital state machine for main)
         <BitOffs>58944</BitOffs>
       </SubItem>
       <SubItem>
         <Name>fbSource</Name>
         <Type Namespace="LCLS_General.Tc3_EventLogger">FB_TcSourceInfo</Type>
+<<<<<<< HEAD
         <BitSize>2848</BitSize>
         <BitOffs>76384</BitOffs>
+=======
+        <BitSize>2944</BitSize>
+        <BitOffs>76864</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <SubItem>
         <Name>ipResultMessage</Name>
         <Type Namespace="LCLS_General.Tc3_EventLogger">I_TcMessage</Type>
         <BitSize>32</BitSize>
+<<<<<<< HEAD
         <BitOffs>79232</BitOffs>
+=======
+        <BitOffs>79808</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <SubItem>
         <Name>hr</Name>
         <Type GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</Type>
         <BitSize>32</BitSize>
+<<<<<<< HEAD
         <BitOffs>79264</BitOffs>
+=======
+        <BitOffs>79840</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <SubItem>
         <Name>hrLastInternalError</Name>
         <Type GUID="{18071995-0000-0000-0000-000000000019}">HRESULT</Type>
         <BitSize>32</BitSize>
+<<<<<<< HEAD
         <BitOffs>79296</BitOffs>
+=======
+        <BitOffs>79872</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <SubItem>
         <Name>eTraceLevel</Name>
         <Type GUID="{B57D3F4A-0836-49B0-81C3-BED5F4817EC9}">TcEventSeverity</Type>
         <BitSize>16</BitSize>
+<<<<<<< HEAD
         <BitOffs>79328</BitOffs>
+=======
+        <BitOffs>79904</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Default>
           <EnumText>TcEventSeverity.Verbose</EnumText>
         </Default>
@@ -2875,7 +3652,11 @@
         <Name>bFirstCall</Name>
         <Type>BOOL</Type>
         <BitSize>8</BitSize>
+<<<<<<< HEAD
         <BitOffs>79344</BitOffs>
+=======
+        <BitOffs>79920</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Default>
           <Bool>true</Bool>
         </Default>
@@ -2884,7 +3665,11 @@
         <Name>sPath</Name>
         <Type Namespace="Tc2_System">T_MaxString</Type>
         <BitSize>2048</BitSize>
+<<<<<<< HEAD
         <BitOffs>79352</BitOffs>
+=======
+        <BitOffs>79928</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Properties>
           <Property>
             <Name>instance-path</Name>
@@ -2899,56 +3684,92 @@
         <Type>INT</Type>
         <Comment>////////////////////////////</Comment>
         <BitSize>16</BitSize>
+<<<<<<< HEAD
         <BitOffs>81408</BitOffs>
+=======
+        <BitOffs>81984</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <SubItem>
         <Name>LastCallTime</Name>
         <Type>ULINT</Type>
         <BitSize>64</BitSize>
+<<<<<<< HEAD
         <BitOffs>81472</BitOffs>
+=======
+        <BitOffs>82048</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <SubItem>
         <Name>CurrentCallTime</Name>
         <Type>ULINT</Type>
         <BitSize>64</BitSize>
+<<<<<<< HEAD
         <BitOffs>81536</BitOffs>
+=======
+        <BitOffs>82112</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <SubItem>
         <Name>DeltaSinceLastCall</Name>
         <Type>ULINT</Type>
         <BitSize>64</BitSize>
+<<<<<<< HEAD
         <BitOffs>81600</BitOffs>
+=======
+        <BitOffs>82176</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <SubItem>
         <Name>WhenTripsCleared</Name>
         <Type>ULINT</Type>
         <BitSize>64</BitSize>
+<<<<<<< HEAD
         <BitOffs>81664</BitOffs>
+=======
+        <BitOffs>82240</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <SubItem>
         <Name>ftTrippedReleased</Name>
         <Type Namespace="Tc2_Standard">F_TRIG</Type>
         <BitSize>64</BitSize>
+<<<<<<< HEAD
         <BitOffs>81728</BitOffs>
+=======
+        <BitOffs>82304</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <SubItem>
         <Name>bLocalTrickleTripped</Name>
         <Type>BOOL</Type>
         <BitSize>8</BitSize>
+<<<<<<< HEAD
         <BitOffs>81792</BitOffs>
+=======
+        <BitOffs>82368</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <SubItem>
         <Name>bLocalTripped</Name>
         <Type>BOOL</Type>
         <BitSize>8</BitSize>
+<<<<<<< HEAD
         <BitOffs>81800</BitOffs>
+=======
+        <BitOffs>82376</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <SubItem>
         <Name>bTripped</Name>
         <Type>BOOL</Type>
         <Comment> Won't emit messages if true</Comment>
         <BitSize>8</BitSize>
+<<<<<<< HEAD
         <BitOffs>81808</BitOffs>
+=======
+        <BitOffs>82384</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Properties>
           <Property>
             <Name>pytmc</Name>
@@ -2964,7 +3785,11 @@
         <Name>bResetBreaker</Name>
         <Type>BOOL</Type>
         <BitSize>8</BitSize>
+<<<<<<< HEAD
         <BitOffs>81816</BitOffs>
+=======
+        <BitOffs>82392</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
         <Properties>
           <Property>
             <Name>pytmc</Name>
@@ -2980,13 +3805,21 @@
         <Name>rtResetBreaker</Name>
         <Type Namespace="Tc2_Standard">R_TRIG</Type>
         <BitSize>64</BitSize>
+<<<<<<< HEAD
         <BitOffs>81824</BitOffs>
+=======
+        <BitOffs>82400</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <SubItem>
         <Name>rtTripped</Name>
         <Type Namespace="Tc2_Standard">R_TRIG</Type>
         <BitSize>64</BitSize>
+<<<<<<< HEAD
         <BitOffs>81888</BitOffs>
+=======
+        <BitOffs>82464</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
       </SubItem>
       <Action>
         <Name>CircuitBreaker</Name>
@@ -3499,12 +4332,20 @@
       </Properties>
     </DataType>
     <DataType>
+<<<<<<< HEAD
       <Name Namespace="Tc2_Standard">TOF</Name>
+=======
+      <Name Namespace="Tc2_Standard">TON</Name>
+>>>>>>> 47039b5 (inital state machine for main)
       <BitSize>224</BitSize>
       <SubItem>
         <Name>IN</Name>
         <Type>BOOL</Type>
+<<<<<<< HEAD
         <Comment> starts timer with falling edge, resets timer with rising edge </Comment>
+=======
+        <Comment> starts timer with rising edge, resets timer with falling edge </Comment>
+>>>>>>> 47039b5 (inital state machine for main)
         <BitSize>8</BitSize>
         <BitOffs>32</BitOffs>
         <Properties>
@@ -3530,7 +4371,11 @@
       <SubItem>
         <Name>Q</Name>
         <Type>BOOL</Type>
+<<<<<<< HEAD
         <Comment> is FALSE, PT seconds after IN had a falling edge </Comment>
+=======
+        <Comment> gets TRUE, delay time (PT) after a rising edge at IN </Comment>
+>>>>>>> 47039b5 (inital state machine for main)
         <BitSize>8</BitSize>
         <BitOffs>96</BitOffs>
         <Properties>
@@ -3573,6 +4418,7 @@
       </Properties>
     </DataType>
     <DataType>
+<<<<<<< HEAD
       <Name>UINT (0..GVL_Param_TcUnit.MaxNumberOfTestSuites)</Name>
       <BitSize>16</BitSize>
       <BaseType>UINT</BaseType>
@@ -3945,10 +4791,130 @@
         <Property>
           <Name>UpperBorder</Name>
           <Value>1000</Value>
+=======
+      <Name>FB_VALVE_RELAY</Name>
+      <BitSize>384</BitSize>
+      <SubItem>
+        <Name>bTimerQ</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>32</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>b_open</Name>
+        <Type>BOOL</Type>
+        <Comment> control variable</Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>40</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>rawOutputRelayChan1</Name>
+        <Type>BOOL</Type>
+        <Comment> EL2624 Relayu Logic Here</Comment>
+        <BitSize>8</BitSize>
+        <BitOffs>48</BitOffs>
+        <Properties>
+          <Property>
+            <Name>TcAddressType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>rawOutputRelayChan3</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>56</BitOffs>
+        <Properties>
+          <Property>
+            <Name>TcAddressType</Name>
+            <Value>Output</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>bCloseRBV</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>64</BitOffs>
+        <Properties>
+          <Property>
+            <Name>TcAddressType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>bOpenRBV</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>72</BitOffs>
+        <Properties>
+          <Property>
+            <Name>TcAddressType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>bMovingRBV</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>80</BitOffs>
+        <Properties>
+          <Property>
+            <Name>TcAddressType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>tActuateTime</Name>
+        <Type>TIME</Type>
+        <BitSize>32</BitSize>
+        <BitOffs>96</BitOffs>
+        <Default>
+          <DateTime>T#24h</DateTime>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>iState</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>128</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>fbValveTimer</Name>
+        <Type Namespace="Tc2_Standard">TON</Type>
+        <BitSize>224</BitSize>
+        <BitOffs>160</BitOffs>
+      </SubItem>
+      <Method>
+        <Name>ACTUATE_VALVE</Name>
+        <ReturnType>BOOL</ReturnType>
+        <ReturnBitSize>8</ReturnBitSize>
+        <Parameter>
+          <Name>b_open</Name>
+          <Type>BOOL</Type>
+          <BitSize>8</BitSize>
+        </Parameter>
+      </Method>
+      <Properties>
+        <Property>
+          <Name>PouType</Name>
+          <Value>FunctionBlock</Value>
+>>>>>>> 47039b5 (inital state machine for main)
         </Property>
       </Properties>
     </DataType>
     <DataType>
+<<<<<<< HEAD
       <Name Namespace="LCLS_General.TcUnit">FB_TestResults</Name>
       <Comment> This function block holds results of the complete test run, i.e. results for all test suites </Comment>
       <BitSize>621296256</BitSize>
@@ -4327,6 +5293,30 @@
       <EnumInfo>
         <Text>Error</Text>
         <Enum>3</Enum>
+=======
+      <Name>E_LED_MODES</Name>
+      <BitSize>16</BitSize>
+      <BaseType>INT</BaseType>
+      <EnumInfo>
+        <Text>SOLID_YELLOW</Text>
+        <Enum>0</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>FLASH_YELLOW</Text>
+        <Enum>1</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>SOLID_RED</Text>
+        <Enum>2</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>FLASH_RED</Text>
+        <Enum>3</Enum>
+      </EnumInfo>
+      <EnumInfo>
+        <Text>SOLID_GREEN</Text>
+        <Enum>4</Enum>
+>>>>>>> 47039b5 (inital state machine for main)
       </EnumInfo>
       <Properties>
         <Property>
@@ -4335,6 +5325,7 @@
         <Property>
           <Name>strict</Name>
         </Property>
+<<<<<<< HEAD
       </Properties>
     </DataType>
     <DataType>
@@ -11897,6 +12888,28 @@
           </Properties>
         </Parameter>
       </Method>
+=======
+        <Property>
+          <Name>generate_implicit_init_function</Name>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+      <Name>FB_LED_TOWER</Name>
+      <BitSize>64</BitSize>
+      <SubItem>
+        <Name>eLEDMode</Name>
+        <Type>E_LED_MODES</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>32</BitOffs>
+        <Properties>
+          <Property>
+            <Name>ItemType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+>>>>>>> 47039b5 (inital state machine for main)
       <Properties>
         <Property>
           <Name>PouType</Name>
@@ -12039,6 +13052,169 @@
       </Properties>
     </DataType>
     <DataType>
+<<<<<<< HEAD
+=======
+      <Name>FB_N2</Name>
+      <BitSize>1600</BitSize>
+      <SubItem>
+        <Name>rawInputmA</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>32</BitOffs>
+        <Properties>
+          <Property>
+            <Name>TcAddressType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>bInduceButton</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>48</BitOffs>
+        <Properties>
+          <Property>
+            <Name>TcAddressType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>bFinishExchangeButton</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>56</BitOffs>
+        <Properties>
+          <Property>
+            <Name>TcAddressType</Name>
+            <Value>Input</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>fbValveRelay</Name>
+        <Type>FB_VALVE_RELAY</Type>
+        <BitSize>384</BitSize>
+        <BitOffs>64</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>fbLEDTower</Name>
+        <Type>FB_LED_TOWER</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>448</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>fbGetmA</Name>
+        <Type Namespace="LCLS_General">FB_AnalogInput</Type>
+        <BitSize>512</BitSize>
+        <BitOffs>512</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>maxMass</Name>
+        <Type>LREAL</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>1024</BitOffs>
+        <Properties>
+          <Property>
+            <Name>pytmc</Name>
+            <Value>pv: MAX_MASS</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>minMass</Name>
+        <Type>LREAL</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>1088</BitOffs>
+        <Properties>
+          <Property>
+            <Name>pytmc</Name>
+            <Value>pv: MIN_MASS</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>fMassofGas</Name>
+        <Type>LREAL</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>1152</BitOffs>
+        <Properties>
+          <Property>
+            <Name>pytmc</Name>
+            <Value>pv: CURRENT_MASS</Value>
+          </Property>
+        </Properties>
+      </SubItem>
+      <SubItem>
+        <Name>fmA</Name>
+        <Type>LREAL</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>1216</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>fPress</Name>
+        <Type>LREAL</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>1280</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>fMinPressureThresh</Name>
+        <Type>LREAL</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>1344</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>fMinMassThresh</Name>
+        <Type>LREAL</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>1408</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>fWarningThresh</Name>
+        <Type>LREAL</Type>
+        <BitSize>64</BitSize>
+        <BitOffs>1472</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>eLEDMode</Name>
+        <Type>E_LED_MODES</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>1536</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>bValveTimerQ</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>1552</BitOffs>
+      </SubItem>
+      <SubItem>
+        <Name>bInit</Name>
+        <Type>BOOL</Type>
+        <BitSize>8</BitSize>
+        <BitOffs>1560</BitOffs>
+        <Default>
+          <Bool>true</Bool>
+        </Default>
+      </SubItem>
+      <SubItem>
+        <Name>iState</Name>
+        <Type>INT</Type>
+        <BitSize>16</BitSize>
+        <BitOffs>1568</BitOffs>
+        <Default>
+          <Value>0</Value>
+        </Default>
+      </SubItem>
+      <Properties>
+        <Property>
+          <Name>PouType</Name>
+          <Value>FunctionBlock</Value>
+        </Property>
+      </Properties>
+    </DataType>
+    <DataType>
+>>>>>>> 47039b5 (inital state machine for main)
       <Name>VERSION</Name>
       <BitSize>64</BitSize>
       <SubItem>
@@ -12878,6 +14054,7 @@
         </Property>
       </Properties>
     </DataType>
+<<<<<<< HEAD
     <DataType>
       <Name>FB_VALVE_RELAY</Name>
       <BitSize>384</BitSize>
@@ -12990,6 +14167,11 @@
   </DataTypes>
   <Modules>
     <Module GUID="{5170B66F-A6EA-41AC-B839-50596D76AEBB}" TcSmClass="TComPlcObjDef" TargetPlatform="TwinCAT RT (x86)">
+=======
+  </DataTypes>
+  <Modules>
+    <Module GUID="{5170B66F-A6EA-41AC-B839-50596D76AEBB}" TcSmClass="TComPlcObjDef" TargetPlatform="TwinCAT CE7 (ARMV7)">
+>>>>>>> 47039b5 (inital state machine for main)
       <Name>lclc_plc_neh_n2</Name>
       <CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
       <Licenses/>
@@ -13008,25 +14190,127 @@
           <AreaNo AreaType="InputDst" CreateSymbols="true">0</AreaNo>
           <Name>PlcTask Inputs</Name>
           <ContextId>0</ContextId>
+<<<<<<< HEAD
           <ByteSize>79691776</ByteSize>
           <Symbol>
             <Name>MAIN.rawInputmA</Name>
+=======
+          <ByteSize>720896</ByteSize>
+          <Symbol>
+            <Name>MAIN.fbN2_01.rawInputmA</Name>
+>>>>>>> 47039b5 (inital state machine for main)
             <BitSize>16</BitSize>
             <BaseType>INT</BaseType>
             <Properties>
               <Property>
+<<<<<<< HEAD
                 <Name>TcLinkTo</Name>
                 <Value>TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 1^Value</Value>
               </Property>
+=======
+                <Name>TcAddressType</Name>
+                <Value>Input</Value>
+              </Property>
+            </Properties>
+            <BitOffs>3383392</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>MAIN.fbN2_01.bInduceButton</Name>
+            <BitSize>8</BitSize>
+            <BaseType>BOOL</BaseType>
+            <Properties>
+>>>>>>> 47039b5 (inital state machine for main)
               <Property>
                 <Name>TcAddressType</Name>
                 <Value>Input</Value>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>625196848</BitOffs>
           </Symbol>
           <Symbol>
             <Name>MAIN.fbGetmA.iRaw</Name>
+            <Comment> Connect this input to the terminal</Comment>
+            <BitSize>32</BitSize>
+            <BaseType>DINT</BaseType>
+=======
+            <BitOffs>3383408</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>MAIN.fbN2_01.bFinishExchangeButton</Name>
+            <BitSize>8</BitSize>
+            <BaseType>BOOL</BaseType>
+>>>>>>> 47039b5 (inital state machine for main)
+            <Properties>
+              <Property>
+                <Name>TcAddressType</Name>
+                <Value>Input</Value>
+              </Property>
+            </Properties>
+<<<<<<< HEAD
+            <BitOffs>633585888</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>MAIN.fbValveRelay.bCloseRBV</Name>
+=======
+            <BitOffs>3383416</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>MAIN.fbN2_01.fbValveRelay.bCloseRBV</Name>
+>>>>>>> 47039b5 (inital state machine for main)
+            <BitSize>8</BitSize>
+            <BaseType>BOOL</BaseType>
+            <Properties>
+              <Property>
+                <Name>TcAddressType</Name>
+                <Value>Input</Value>
+              </Property>
+            </Properties>
+<<<<<<< HEAD
+            <BitOffs>635395512</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>MAIN.fbValveRelay.bOpenRBV</Name>
+=======
+            <BitOffs>3383488</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>MAIN.fbN2_01.fbValveRelay.bOpenRBV</Name>
+>>>>>>> 47039b5 (inital state machine for main)
+            <BitSize>8</BitSize>
+            <BaseType>BOOL</BaseType>
+            <Properties>
+              <Property>
+                <Name>TcAddressType</Name>
+                <Value>Input</Value>
+              </Property>
+            </Properties>
+<<<<<<< HEAD
+            <BitOffs>635395520</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>MAIN.fbValveRelay.bMovingRBV</Name>
+=======
+            <BitOffs>3383496</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>MAIN.fbN2_01.fbValveRelay.bMovingRBV</Name>
+>>>>>>> 47039b5 (inital state machine for main)
+            <BitSize>8</BitSize>
+            <BaseType>BOOL</BaseType>
+            <Properties>
+              <Property>
+                <Name>TcAddressType</Name>
+                <Value>Input</Value>
+              </Property>
+            </Properties>
+<<<<<<< HEAD
+            <BitOffs>635395528</BitOffs>
+=======
+            <BitOffs>3383504</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>MAIN.fbN2_01.fbGetmA.iRaw</Name>
             <Comment> Connect this input to the terminal</Comment>
             <BitSize>32</BitSize>
             <BaseType>DINT</BaseType>
@@ -13036,52 +14320,23 @@
                 <Value>Input</Value>
               </Property>
             </Properties>
-            <BitOffs>633585888</BitOffs>
-          </Symbol>
-          <Symbol>
-            <Name>MAIN.fbValveRelay.bCloseRBV</Name>
-            <BitSize>8</BitSize>
-            <BaseType>BOOL</BaseType>
-            <Properties>
-              <Property>
-                <Name>TcAddressType</Name>
-                <Value>Input</Value>
-              </Property>
-            </Properties>
-            <BitOffs>635395512</BitOffs>
-          </Symbol>
-          <Symbol>
-            <Name>MAIN.fbValveRelay.bOpenRBV</Name>
-            <BitSize>8</BitSize>
-            <BaseType>BOOL</BaseType>
-            <Properties>
-              <Property>
-                <Name>TcAddressType</Name>
-                <Value>Input</Value>
-              </Property>
-            </Properties>
-            <BitOffs>635395520</BitOffs>
-          </Symbol>
-          <Symbol>
-            <Name>MAIN.fbValveRelay.bMovingRBV</Name>
-            <BitSize>8</BitSize>
-            <BaseType>BOOL</BaseType>
-            <Properties>
-              <Property>
-                <Name>TcAddressType</Name>
-                <Value>Input</Value>
-              </Property>
-            </Properties>
-            <BitOffs>635395528</BitOffs>
+            <BitOffs>3383904</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
         </DataArea>
         <DataArea>
           <AreaNo AreaType="OutputSrc" CreateSymbols="true">1</AreaNo>
           <Name>PlcTask Outputs</Name>
           <ContextId>0</ContextId>
+<<<<<<< HEAD
           <ByteSize>79691776</ByteSize>
           <Symbol>
             <Name>MAIN.fbValveRelay.rawOutputRelayChan1</Name>
+=======
+          <ByteSize>720896</ByteSize>
+          <Symbol>
+            <Name>MAIN.fbN2_01.fbValveRelay.rawOutputRelayChan1</Name>
+>>>>>>> 47039b5 (inital state machine for main)
             <Comment> EL2624 Relayu Logic Here</Comment>
             <BitSize>8</BitSize>
             <BaseType>BOOL</BaseType>
@@ -13091,10 +14346,17 @@
                 <Value>Output</Value>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>635395496</BitOffs>
           </Symbol>
           <Symbol>
             <Name>MAIN.fbValveRelay.rawOutputRelayChan3</Name>
+=======
+            <BitOffs>3383472</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>MAIN.fbN2_01.fbValveRelay.rawOutputRelayChan3</Name>
+>>>>>>> 47039b5 (inital state machine for main)
             <BitSize>8</BitSize>
             <BaseType>BOOL</BaseType>
             <Properties>
@@ -13103,14 +14365,22 @@
                 <Value>Output</Value>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>635395504</BitOffs>
+=======
+            <BitOffs>3383480</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
         </DataArea>
         <DataArea>
           <AreaNo AreaType="Internal" CreateSymbols="true">3</AreaNo>
           <Name>PlcTask Internal</Name>
           <ContextId>0</ContextId>
+<<<<<<< HEAD
           <ByteSize>79691776</ByteSize>
+=======
+          <ByteSize>720896</ByteSize>
+>>>>>>> 47039b5 (inital state machine for main)
           <Symbol>
             <Name>DefaultGlobals.stSys</Name>
             <Comment>Included for you</Comment>
@@ -13418,7 +14688,11 @@
           <Symbol>
             <Name>GVL_Logger.fbRootLogger</Name>
             <Comment>Instantiated here to be used everywhere</Comment>
+<<<<<<< HEAD
             <BitSize>81984</BitSize>
+=======
+            <BitSize>82560</BitSize>
+>>>>>>> 47039b5 (inital state machine for main)
             <BaseType Namespace="LCLS_General">FB_LogMessage</BaseType>
             <Properties>
               <Property>
@@ -13438,11 +14712,19 @@
               </SubItem>
               <SubItem>
                 <Name>.iMinor</Name>
+<<<<<<< HEAD
                 <Value>3</Value>
               </SubItem>
               <SubItem>
                 <Name>.iBuild</Name>
                 <Value>21</Value>
+=======
+                <Value>6</Value>
+              </SubItem>
+              <SubItem>
+                <Name>.iBuild</Name>
+                <Value>2</Value>
+>>>>>>> 47039b5 (inital state machine for main)
               </SubItem>
               <SubItem>
                 <Name>.iRevision</Name>
@@ -13454,7 +14736,11 @@
               </SubItem>
               <SubItem>
                 <Name>.sVersion</Name>
+<<<<<<< HEAD
                 <String>3.3.21.0</String>
+=======
+                <String>3.6.2.0</String>
+>>>>>>> 47039b5 (inital state machine for main)
               </SubItem>
             </Default>
             <Properties>
@@ -13465,7 +14751,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3155200</BitOffs>
+=======
+            <BitOffs>3155776</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Version.stLibVersion_Tc2_Standard</Name>
@@ -13505,7 +14795,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3155488</BitOffs>
+=======
+            <BitOffs>3156064</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Version.stLibVersion_Tc2_System</Name>
@@ -13545,7 +14839,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3155776</BitOffs>
+=======
+            <BitOffs>3156352</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_EVENTLOG</Name>
@@ -13560,7 +14858,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156064</BitOffs>
+=======
+            <BitOffs>3156640</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_RTIME</Name>
@@ -13575,7 +14877,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156080</BitOffs>
+=======
+            <BitOffs>3156656</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_IO</Name>
@@ -13590,7 +14896,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156096</BitOffs>
+=======
+            <BitOffs>3156672</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_NC</Name>
@@ -13604,7 +14914,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156112</BitOffs>
+=======
+            <BitOffs>3156688</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_NCSAF</Name>
@@ -13618,7 +14932,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156128</BitOffs>
+=======
+            <BitOffs>3156704</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_NCSVB</Name>
@@ -13632,7 +14950,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156144</BitOffs>
+=======
+            <BitOffs>3156720</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_ISG</Name>
@@ -13646,7 +14968,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156160</BitOffs>
+=======
+            <BitOffs>3156736</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_CNC</Name>
@@ -13660,7 +14986,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156176</BitOffs>
+=======
+            <BitOffs>3156752</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_LINE</Name>
@@ -13674,7 +15004,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156192</BitOffs>
+=======
+            <BitOffs>3156768</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_PLC</Name>
@@ -13688,7 +15022,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156208</BitOffs>
+=======
+            <BitOffs>3156784</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_PLC_RTS1</Name>
@@ -13703,7 +15041,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156224</BitOffs>
+=======
+            <BitOffs>3156800</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_PLC_RTS2</Name>
@@ -13718,7 +15060,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156240</BitOffs>
+=======
+            <BitOffs>3156816</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_PLC_RTS3</Name>
@@ -13733,7 +15079,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156256</BitOffs>
+=======
+            <BitOffs>3156832</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_PLC_RTS4</Name>
@@ -13748,7 +15098,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156272</BitOffs>
+=======
+            <BitOffs>3156848</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_CAM</Name>
@@ -13762,7 +15116,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156288</BitOffs>
+=======
+            <BitOffs>3156864</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R0_CAMTOOL</Name>
@@ -13777,7 +15135,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156304</BitOffs>
+=======
+            <BitOffs>3156880</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R3_SYSSERV</Name>
@@ -13792,7 +15154,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156320</BitOffs>
+=======
+            <BitOffs>3156896</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_R3_SCOPESERVER</Name>
@@ -13807,7 +15173,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156336</BitOffs>
+=======
+            <BitOffs>3156912</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_INVALID</Name>
@@ -13822,7 +15192,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156352</BitOffs>
+=======
+            <BitOffs>3156928</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_IDLE</Name>
@@ -13836,7 +15210,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156368</BitOffs>
+=======
+            <BitOffs>3156944</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_RESET</Name>
@@ -13850,7 +15228,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156384</BitOffs>
+=======
+            <BitOffs>3156960</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_INIT</Name>
@@ -13864,7 +15246,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156400</BitOffs>
+=======
+            <BitOffs>3156976</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_START</Name>
@@ -13878,7 +15264,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156416</BitOffs>
+=======
+            <BitOffs>3156992</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_RUN</Name>
@@ -13892,7 +15282,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156432</BitOffs>
+=======
+            <BitOffs>3157008</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_STOP</Name>
@@ -13906,7 +15300,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156448</BitOffs>
+=======
+            <BitOffs>3157024</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_SAVECFG</Name>
@@ -13920,7 +15318,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156464</BitOffs>
+=======
+            <BitOffs>3157040</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_LOADCFG</Name>
@@ -13934,7 +15336,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156480</BitOffs>
+=======
+            <BitOffs>3157056</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_POWERFAILURE</Name>
@@ -13948,7 +15354,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156496</BitOffs>
+=======
+            <BitOffs>3157072</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_POWERGOOD</Name>
@@ -13962,7 +15372,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156512</BitOffs>
+=======
+            <BitOffs>3157088</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_ERROR</Name>
@@ -13976,7 +15390,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156528</BitOffs>
+=======
+            <BitOffs>3157104</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_SHUTDOWN</Name>
@@ -13990,7 +15408,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156544</BitOffs>
+=======
+            <BitOffs>3157120</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_SUSPEND</Name>
@@ -14004,7 +15426,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156560</BitOffs>
+=======
+            <BitOffs>3157136</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_RESUME</Name>
@@ -14018,7 +15444,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156576</BitOffs>
+=======
+            <BitOffs>3157152</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_CONFIG</Name>
@@ -14033,7 +15463,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156592</BitOffs>
+=======
+            <BitOffs>3157168</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_RECONFIG</Name>
@@ -14048,7 +15482,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156608</BitOffs>
+=======
+            <BitOffs>3157184</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_STOPPING</Name>
@@ -14062,7 +15500,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156624</BitOffs>
+=======
+            <BitOffs>3157200</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_INCOMPATIBLE</Name>
@@ -14076,7 +15518,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156640</BitOffs>
+=======
+            <BitOffs>3157216</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_EXCEPTION</Name>
@@ -14090,7 +15536,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156656</BitOffs>
+=======
+            <BitOffs>3157232</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSSTATE_MAXSTATES</Name>
@@ -14105,7 +15555,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156672</BitOffs>
+=======
+            <BitOffs>3157248</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.BOOTDATAFLAGS_RETAIN_REQUESTED</Name>
@@ -14119,7 +15573,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156688</BitOffs>
+=======
+            <BitOffs>3157264</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.BOOTDATAFLAGS_PERSISTENT_LOADED</Name>
@@ -14134,7 +15592,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156696</BitOffs>
+=======
+            <BitOffs>3157272</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYMTAB</Name>
@@ -14149,7 +15611,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156704</BitOffs>
+=======
+            <BitOffs>3157280</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYMNAME</Name>
@@ -14164,7 +15630,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156736</BitOffs>
+=======
+            <BitOffs>3157312</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYMVAL</Name>
@@ -14179,7 +15649,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156768</BitOffs>
+=======
+            <BitOffs>3157344</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYM_HNDBYNAME</Name>
@@ -14193,7 +15667,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156800</BitOffs>
+=======
+            <BitOffs>3157376</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYM_VALBYNAME</Name>
@@ -14207,7 +15685,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156832</BitOffs>
+=======
+            <BitOffs>3157408</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYM_VALBYHND</Name>
@@ -14221,7 +15703,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156864</BitOffs>
+=======
+            <BitOffs>3157440</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYM_RELEASEHND</Name>
@@ -14235,7 +15721,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156896</BitOffs>
+=======
+            <BitOffs>3157472</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYM_INFOBYNAME</Name>
@@ -14249,7 +15739,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156928</BitOffs>
+=======
+            <BitOffs>3157504</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYM_VERSION</Name>
@@ -14263,7 +15757,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156960</BitOffs>
+=======
+            <BitOffs>3157536</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYM_INFOBYNAMEEX</Name>
@@ -14277,7 +15775,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3156992</BitOffs>
+=======
+            <BitOffs>3157568</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYM_DOWNLOAD</Name>
@@ -14291,7 +15793,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157024</BitOffs>
+=======
+            <BitOffs>3157600</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYM_UPLOAD</Name>
@@ -14305,7 +15811,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157056</BitOffs>
+=======
+            <BitOffs>3157632</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYM_UPLOADINFO</Name>
@@ -14319,7 +15829,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157088</BitOffs>
+=======
+            <BitOffs>3157664</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_SYMNOTE</Name>
@@ -14334,7 +15848,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157120</BitOffs>
+=======
+            <BitOffs>3157696</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_IOIMAGE_RWIB</Name>
@@ -14349,7 +15867,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157152</BitOffs>
+=======
+            <BitOffs>3157728</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_IOIMAGE_RWIX</Name>
@@ -14364,7 +15886,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157184</BitOffs>
+=======
+            <BitOffs>3157760</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_IOIMAGE_RISIZE</Name>
@@ -14379,7 +15905,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157216</BitOffs>
+=======
+            <BitOffs>3157792</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_IOIMAGE_RWOB</Name>
@@ -14394,7 +15924,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157248</BitOffs>
+=======
+            <BitOffs>3157824</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_IOIMAGE_RWOX</Name>
@@ -14409,7 +15943,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157280</BitOffs>
+=======
+            <BitOffs>3157856</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_IOIMAGE_ROSIZE</Name>
@@ -14424,7 +15962,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157312</BitOffs>
+=======
+            <BitOffs>3157888</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_IOIMAGE_CLEARI</Name>
@@ -14439,7 +15981,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157344</BitOffs>
+=======
+            <BitOffs>3157920</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_IOIMAGE_CLEARO</Name>
@@ -14454,7 +16000,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157376</BitOffs>
+=======
+            <BitOffs>3157952</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_IOIMAGE_RWIOB</Name>
@@ -14469,7 +16019,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157408</BitOffs>
+=======
+            <BitOffs>3157984</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIGRP_DEVICE_DATA</Name>
@@ -14484,7 +16038,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157440</BitOffs>
+=======
+            <BitOffs>3158016</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIOFFS_DEVDATA_ADSSTATE</Name>
@@ -14499,7 +16057,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157472</BitOffs>
+=======
+            <BitOffs>3158048</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSIOFFS_DEVDATA_DEVSTATE</Name>
@@ -14514,7 +16076,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157504</BitOffs>
+=======
+            <BitOffs>3158080</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_OPENCREATE</Name>
@@ -14529,7 +16095,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157536</BitOffs>
+=======
+            <BitOffs>3158112</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_OPENREAD</Name>
@@ -14544,7 +16114,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157568</BitOffs>
+=======
+            <BitOffs>3158144</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_OPENWRITE</Name>
@@ -14559,7 +16133,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157600</BitOffs>
+=======
+            <BitOffs>3158176</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_CREATEFILE</Name>
@@ -14574,7 +16152,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157632</BitOffs>
+=======
+            <BitOffs>3158208</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_CLOSEHANDLE</Name>
@@ -14589,7 +16171,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157664</BitOffs>
+=======
+            <BitOffs>3158240</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FOPEN</Name>
@@ -14603,7 +16189,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157696</BitOffs>
+=======
+            <BitOffs>3158272</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FCLOSE</Name>
@@ -14617,7 +16207,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157728</BitOffs>
+=======
+            <BitOffs>3158304</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FREAD</Name>
@@ -14631,7 +16225,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157760</BitOffs>
+=======
+            <BitOffs>3158336</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FWRITE</Name>
@@ -14645,7 +16243,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157792</BitOffs>
+=======
+            <BitOffs>3158368</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FSEEK</Name>
@@ -14659,7 +16261,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157824</BitOffs>
+=======
+            <BitOffs>3158400</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FTELL</Name>
@@ -14673,7 +16279,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157856</BitOffs>
+=======
+            <BitOffs>3158432</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FGETS</Name>
@@ -14687,7 +16297,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157888</BitOffs>
+=======
+            <BitOffs>3158464</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FPUTS</Name>
@@ -14701,7 +16315,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157920</BitOffs>
+=======
+            <BitOffs>3158496</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FSCANF</Name>
@@ -14715,7 +16333,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157952</BitOffs>
+=======
+            <BitOffs>3158528</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FPRINTF</Name>
@@ -14729,7 +16351,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3157984</BitOffs>
+=======
+            <BitOffs>3158560</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FEOF</Name>
@@ -14743,7 +16369,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158016</BitOffs>
+=======
+            <BitOffs>3158592</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FDELETE</Name>
@@ -14757,7 +16387,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158048</BitOffs>
+=======
+            <BitOffs>3158624</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FRENAME</Name>
@@ -14771,7 +16405,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158080</BitOffs>
+=======
+            <BitOffs>3158656</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_MKDIR</Name>
@@ -14785,7 +16423,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158112</BitOffs>
+=======
+            <BitOffs>3158688</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_RMDIR</Name>
@@ -14799,7 +16441,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158144</BitOffs>
+=======
+            <BitOffs>3158720</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_REG_HKEYLOCALMACHINE</Name>
@@ -14813,7 +16459,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158176</BitOffs>
+=======
+            <BitOffs>3158752</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_SENDEMAIL</Name>
@@ -14827,7 +16477,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158208</BitOffs>
+=======
+            <BitOffs>3158784</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_TIMESERVICES</Name>
@@ -14841,7 +16495,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158240</BitOffs>
+=======
+            <BitOffs>3158816</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_STARTPROCESS</Name>
@@ -14855,7 +16513,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158272</BitOffs>
+=======
+            <BitOffs>3158848</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_CHANGENETID</Name>
@@ -14869,7 +16531,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158304</BitOffs>
+=======
+            <BitOffs>3158880</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TIMESERVICE_DATEANDTIME</Name>
@@ -14884,7 +16550,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158336</BitOffs>
+=======
+            <BitOffs>3158912</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TIMESERVICE_SYSTEMTIMES</Name>
@@ -14898,7 +16568,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158368</BitOffs>
+=======
+            <BitOffs>3158944</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TIMESERVICE_RTCTIMEDIFF</Name>
@@ -14912,7 +16586,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158400</BitOffs>
+=======
+            <BitOffs>3158976</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TIMESERVICE_ADJUSTTIMETORTC</Name>
@@ -14926,7 +16604,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158432</BitOffs>
+=======
+            <BitOffs>3159008</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TIMESERVICE_TIMEZONINFORMATION</Name>
@@ -14940,7 +16622,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158464</BitOffs>
+=======
+            <BitOffs>3159040</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSLOG_MSGTYPE_HINT</Name>
@@ -14955,7 +16641,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158496</BitOffs>
+=======
+            <BitOffs>3159072</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSLOG_MSGTYPE_WARN</Name>
@@ -14970,7 +16660,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158528</BitOffs>
+=======
+            <BitOffs>3159104</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSLOG_MSGTYPE_ERROR</Name>
@@ -14985,7 +16679,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158560</BitOffs>
+=======
+            <BitOffs>3159136</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSLOG_MSGTYPE_LOG</Name>
@@ -15000,7 +16698,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158592</BitOffs>
+=======
+            <BitOffs>3159168</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSLOG_MSGTYPE_MSGBOX</Name>
@@ -15015,7 +16717,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158624</BitOffs>
+=======
+            <BitOffs>3159200</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSLOG_MSGTYPE_RESOURCE</Name>
@@ -15029,7 +16735,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158656</BitOffs>
+=======
+            <BitOffs>3159232</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ADSLOG_MSGTYPE_STRING</Name>
@@ -15043,7 +16753,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158688</BitOffs>
+=======
+            <BitOffs>3159264</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.BOOTDATAFLAGS_PERSISTENT_INVALID</Name>
@@ -15058,7 +16772,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158720</BitOffs>
+=======
+            <BitOffs>3159296</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSTATEFLAGS_BSOD</Name>
@@ -15073,7 +16791,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158728</BitOffs>
+=======
+            <BitOffs>3159304</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSTATEFLAGS_RTVIOLATION</Name>
@@ -15088,7 +16810,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158736</BitOffs>
+=======
+            <BitOffs>3159312</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.nWatchdogTime</Name>
@@ -15100,7 +16826,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158744</BitOffs>
+=======
+            <BitOffs>3159320</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FOPEN_MODEREAD</Name>
@@ -15115,7 +16845,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158752</BitOffs>
+=======
+            <BitOffs>3159328</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FOPEN_MODEWRITE</Name>
@@ -15130,7 +16864,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158784</BitOffs>
+=======
+            <BitOffs>3159360</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FOPEN_MODEAPPEND</Name>
@@ -15145,7 +16883,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158816</BitOffs>
+=======
+            <BitOffs>3159392</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FOPEN_MODEPLUS</Name>
@@ -15160,7 +16902,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158848</BitOffs>
+=======
+            <BitOffs>3159424</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FOPEN_MODEBINARY</Name>
@@ -15175,7 +16921,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158880</BitOffs>
+=======
+            <BitOffs>3159456</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FOPEN_MODETEXT</Name>
@@ -15190,7 +16940,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3158912</BitOffs>
+=======
+            <BitOffs>3159488</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TCEVENTFLAG_PRIOCLASS</Name>
@@ -15205,7 +16959,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159168</BitOffs>
+=======
+            <BitOffs>3159744</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TCEVENTFLAG_FMTSELF</Name>
@@ -15220,7 +16978,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159184</BitOffs>
+=======
+            <BitOffs>3159760</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TCEVENTFLAG_LOG</Name>
@@ -15235,7 +16997,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159200</BitOffs>
+=======
+            <BitOffs>3159776</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TCEVENTFLAG_MSGBOX</Name>
@@ -15250,7 +17016,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159216</BitOffs>
+=======
+            <BitOffs>3159792</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TCEVENTFLAG_SRCID</Name>
@@ -15265,7 +17035,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159232</BitOffs>
+=======
+            <BitOffs>3159808</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TCEVENTFLAG_AUTOFMTALL</Name>
@@ -15279,7 +17053,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159248</BitOffs>
+=======
+            <BitOffs>3159824</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TCEVENTSTATE_INVALID</Name>
@@ -15294,7 +17072,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159264</BitOffs>
+=======
+            <BitOffs>3159840</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TCEVENTSTATE_SIGNALED</Name>
@@ -15309,7 +17091,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159280</BitOffs>
+=======
+            <BitOffs>3159856</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TCEVENTSTATE_RESET</Name>
@@ -15324,7 +17110,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159296</BitOffs>
+=======
+            <BitOffs>3159872</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TCEVENTSTATE_CONFIRMED</Name>
@@ -15339,7 +17129,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159312</BitOffs>
+=======
+            <BitOffs>3159888</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TCEVENTSTATE_RESETCON</Name>
@@ -15354,7 +17148,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159328</BitOffs>
+=======
+            <BitOffs>3159904</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TCEVENT_SRCNAMESIZE</Name>
@@ -15368,7 +17166,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159344</BitOffs>
+=======
+            <BitOffs>3159920</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.TCEVENT_FMTPRGSIZE</Name>
@@ -15382,7 +17184,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159360</BitOffs>
+=======
+            <BitOffs>3159936</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.eWatchdogConfig</Name>
@@ -15396,7 +17202,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159376</BitOffs>
+=======
+            <BitOffs>3159952</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.DEFAULT_ADS_TIMEOUT</Name>
@@ -15411,7 +17221,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159392</BitOffs>
+=======
+            <BitOffs>3159968</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.PI</Name>
@@ -15425,7 +17239,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159424</BitOffs>
+=======
+            <BitOffs>3160000</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.MAX_STRING_LENGTH</Name>
@@ -15440,7 +17258,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3159488</BitOffs>
+=======
+            <BitOffs>3160064</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Version.stLibVersion_Tc3_Module</Name>
@@ -15476,7 +17298,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3160032</BitOffs>
+=======
+            <BitOffs>3160608</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Version.stLibVersion_Tc2_Utilities</Name>
@@ -15489,11 +17315,19 @@
               </SubItem>
               <SubItem>
                 <Name>.iMinor</Name>
+<<<<<<< HEAD
                 <Value>3</Value>
               </SubItem>
               <SubItem>
                 <Name>.iBuild</Name>
                 <Value>54</Value>
+=======
+                <Value>9</Value>
+              </SubItem>
+              <SubItem>
+                <Name>.iBuild</Name>
+                <Value>2</Value>
+>>>>>>> 47039b5 (inital state machine for main)
               </SubItem>
               <SubItem>
                 <Name>.iRevision</Name>
@@ -15505,7 +17339,11 @@
               </SubItem>
               <SubItem>
                 <Name>.sVersion</Name>
+<<<<<<< HEAD
                 <String>3.3.54.0</String>
+=======
+                <String>3.9.2.0</String>
+>>>>>>> 47039b5 (inital state machine for main)
               </SubItem>
             </Default>
             <Properties>
@@ -15516,7 +17354,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3160640</BitOffs>
+=======
+            <BitOffs>3161216</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.MAX_AVERAGE_MEASURES</Name>
@@ -15531,7 +17373,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3160928</BitOffs>
+=======
+            <BitOffs>3161504</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.GLOBAL_FORMAT_HASH_PREFIX_TYPE</Name>
@@ -15546,7 +17392,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3160944</BitOffs>
+=======
+            <BitOffs>3161520</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.GLOBAL_SBCS_TABLE</Name>
@@ -15561,7 +17411,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3160960</BitOffs>
+=======
+            <BitOffs>3161536</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.GLOBAL_DCF77_SEQUENCE_CHECK</Name>
@@ -15576,7 +17430,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3160976</BitOffs>
+=======
+            <BitOffs>3161552</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.DEFAULT_CSV_FIELD_SEP</Name>
@@ -15591,7 +17449,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3160984</BitOffs>
+=======
+            <BitOffs>3161560</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.GLOBAL_DCF77_PULSE_SPLIT</Name>
@@ -15606,7 +17468,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3160992</BitOffs>
+=======
+            <BitOffs>3161568</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.MAX_ADAPTER_NAME_LENGTH</Name>
@@ -15621,7 +17487,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222496</BitOffs>
+=======
+            <BitOffs>3223072</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.MAX_ADAPTER_DESCRIPTION_LENGTH</Name>
@@ -15636,7 +17506,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222528</BitOffs>
+=======
+            <BitOffs>3223104</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.MAX_ADAPTER_ADDRESS_LENGTH</Name>
@@ -15651,7 +17525,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222560</BitOffs>
+=======
+            <BitOffs>3223136</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_IPHELPERAPI</Name>
@@ -15666,7 +17544,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222592</BitOffs>
+=======
+            <BitOffs>3223168</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_IPHOSTNAME</Name>
@@ -15681,7 +17563,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222624</BitOffs>
+=======
+            <BitOffs>3223200</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.IPHELPERAPI_ADAPTERSINFO</Name>
@@ -15696,7 +17582,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222656</BitOffs>
+=======
+            <BitOffs>3223232</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.IPHELPERAPI_IPADDRBYHOSTNAME</Name>
@@ -15711,7 +17601,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222688</BitOffs>
+=======
+            <BitOffs>3223264</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.MAX_LOCAL_ADAPTERS</Name>
@@ -15726,7 +17620,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222720</BitOffs>
+=======
+            <BitOffs>3223296</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_ADDREMOTE</Name>
@@ -15741,7 +17639,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222752</BitOffs>
+=======
+            <BitOffs>3223328</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_DELREMOTE</Name>
@@ -15756,7 +17658,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222784</BitOffs>
+=======
+            <BitOffs>3223360</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_ENUMREMOTE</Name>
@@ -15771,7 +17677,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222816</BitOffs>
+=======
+            <BitOffs>3223392</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.MAX_REMOTE_PCS</Name>
@@ -15786,7 +17696,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222848</BitOffs>
+=======
+            <BitOffs>3223424</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.MAX_ROUTE_NAME_LEN</Name>
@@ -15801,7 +17715,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222864</BitOffs>
+=======
+            <BitOffs>3223440</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.MAX_ROUTE_ADDR_LEN</Name>
@@ -15816,7 +17734,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222872</BitOffs>
+=======
+            <BitOffs>3223448</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ROUTE_FLAG_TEMPORARY</Name>
@@ -15831,7 +17753,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222880</BitOffs>
+=======
+            <BitOffs>3223456</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ROUTE_FLAG_DYNAMIC</Name>
@@ -15846,7 +17772,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222912</BitOffs>
+=======
+            <BitOffs>3223488</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.ROUTE_FLAG_NOOVERRIDE</Name>
@@ -15861,7 +17791,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222944</BitOffs>
+=======
+            <BitOffs>3223520</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.MIN_ROUTE_TRANSPORT</Name>
@@ -15876,7 +17810,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222976</BitOffs>
+=======
+            <BitOffs>3223552</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.MAX_ROUTE_TRANSPORT</Name>
@@ -15891,7 +17829,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222984</BitOffs>
+=======
+            <BitOffs>3223560</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSPORT_AMSLOGGER</Name>
@@ -15906,7 +17848,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3222992</BitOffs>
+=======
+            <BitOffs>3223568</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.EMPTY_ROUTE_ENTRY</Name>
@@ -15940,7 +17886,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3223008</BitOffs>
+=======
+            <BitOffs>3223584</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMSERVICE_FFILEFIND</Name>
@@ -15955,7 +17905,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224192</BitOffs>
+=======
+            <BitOffs>3224768</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.HKEY_MAX_BINARY_DATA_SIZE</Name>
@@ -15970,7 +17924,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224224</BitOffs>
+=======
+            <BitOffs>3224800</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSLOGGER_IGR_GENERAL</Name>
@@ -15985,7 +17943,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224256</BitOffs>
+=======
+            <BitOffs>3224832</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.AMSLOGGER_IOF_MODE</Name>
@@ -16000,7 +17962,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224288</BitOffs>
+=======
+            <BitOffs>3224864</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FORMAT_MAX_ARGS</Name>
@@ -16015,7 +17981,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224320</BitOffs>
+=======
+            <BitOffs>3224896</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FLOATREC_EXP_IS_NAN</Name>
@@ -16030,7 +18000,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224336</BitOffs>
+=======
+            <BitOffs>3224912</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FLOATREC_EXP_IS_INF</Name>
@@ -16045,7 +18019,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224352</BitOffs>
+=======
+            <BitOffs>3224928</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FLOATREC_MAX_DIGITS</Name>
@@ -16060,7 +18038,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224368</BitOffs>
+=======
+            <BitOffs>3224944</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FLOATREC_MAX_PRECISION</Name>
@@ -16075,7 +18057,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224384</BitOffs>
+=======
+            <BitOffs>3224960</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FLOATREC_MIN_PRECISION</Name>
@@ -16090,7 +18076,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224400</BitOffs>
+=======
+            <BitOffs>3224976</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_NOERROR</Name>
@@ -16105,7 +18095,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224416</BitOffs>
+=======
+            <BitOffs>3224992</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_PERCENTSIGNPOSITION</Name>
@@ -16120,7 +18114,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224448</BitOffs>
+=======
+            <BitOffs>3225024</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_ASTERISKPOSITION</Name>
@@ -16135,7 +18133,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224480</BitOffs>
+=======
+            <BitOffs>3225056</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_WIDTHVALUE</Name>
@@ -16150,7 +18152,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224512</BitOffs>
+=======
+            <BitOffs>3225088</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_PRECISIONVALUE</Name>
@@ -16165,7 +18171,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224544</BitOffs>
+=======
+            <BitOffs>3225120</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_FLAGPOSITION</Name>
@@ -16180,7 +18190,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224576</BitOffs>
+=======
+            <BitOffs>3225152</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_WIDTHPRECISIONVALPOS</Name>
@@ -16195,7 +18209,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224608</BitOffs>
+=======
+            <BitOffs>3225184</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_PRECISIONDOTPOSITION</Name>
@@ -16210,7 +18228,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224640</BitOffs>
+=======
+            <BitOffs>3225216</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_TYPEFIELDVALUE</Name>
@@ -16225,7 +18247,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224672</BitOffs>
+=======
+            <BitOffs>3225248</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_ARGTYPEINVALID</Name>
@@ -16240,7 +18266,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224704</BitOffs>
+=======
+            <BitOffs>3225280</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_UNACCEPTEDPARAMETER</Name>
@@ -16255,7 +18285,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224736</BitOffs>
+=======
+            <BitOffs>3225312</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_INSUFFICIENTARGS</Name>
@@ -16270,7 +18304,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224768</BitOffs>
+=======
+            <BitOffs>3225344</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_DESTBUFFOVERFLOW</Name>
@@ -16285,7 +18323,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224800</BitOffs>
+=======
+            <BitOffs>3225376</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FMTERR_INVALIDPOINTERINPUT</Name>
@@ -16300,7 +18342,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224832</BitOffs>
+=======
+            <BitOffs>3225408</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.EMPTY_ARG_VALUE</Name>
@@ -16326,7 +18372,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224864</BitOffs>
+=======
+            <BitOffs>3225440</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FORMAT_HEXASC_CODES</Name>
@@ -16475,7 +18525,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3224960</BitOffs>
+=======
+            <BitOffs>3225536</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.FORMAT_DECASC_CODES</Name>
@@ -16533,7 +18587,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3225216</BitOffs>
+=======
+            <BitOffs>3225792</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMTIME_MAX_MONTHDAYS</Name>
@@ -16650,7 +18708,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3230704</BitOffs>
+=======
+            <BitOffs>3231280</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMTIME_MAX_YEARSDAY</Name>
@@ -16783,7 +18845,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3231088</BitOffs>
+=======
+            <BitOffs>3231664</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMTIME_DATEDELTA_OFFSET</Name>
@@ -16798,7 +18864,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3231552</BitOffs>
+=======
+            <BitOffs>3232128</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMTIME_TICKSPERMSEC</Name>
@@ -16820,7 +18890,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3231584</BitOffs>
+=======
+            <BitOffs>3232160</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMTIME_TICKSPERSEC</Name>
@@ -16842,7 +18916,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3231648</BitOffs>
+=======
+            <BitOffs>3232224</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMTIME_TICKSPERDAY</Name>
@@ -16864,7 +18942,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3231712</BitOffs>
+=======
+            <BitOffs>3232288</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMTIME_DATE_AND_TIME_MIN</Name>
@@ -16886,7 +18968,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3231776</BitOffs>
+=======
+            <BitOffs>3232352</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMTIME_DATE_AND_TIME_MAX</Name>
@@ -16908,7 +18994,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3231840</BitOffs>
+=======
+            <BitOffs>3232416</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMTIME_TICKSPERMSEC64</Name>
@@ -16923,7 +19013,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3231936</BitOffs>
+=======
+            <BitOffs>3232512</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMTIME_TICKSPERSEC64</Name>
@@ -16938,7 +19032,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3232000</BitOffs>
+=======
+            <BitOffs>3232576</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMTIME_TICKSPERDAY64</Name>
@@ -16953,7 +19051,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3232064</BitOffs>
+=======
+            <BitOffs>3232640</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMTIME_DATE_AND_TIME_MIN64</Name>
@@ -16968,7 +19070,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3232128</BitOffs>
+=======
+            <BitOffs>3232704</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.SYSTEMTIME_DATE_AND_TIME_MAX64</Name>
@@ -16983,7 +19089,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3232192</BitOffs>
+=======
+            <BitOffs>3232768</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.WEST_EUROPE_TZI</Name>
@@ -17056,7 +19166,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3232256</BitOffs>
+=======
+            <BitOffs>3232832</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.DATE_AND_TIME_SECPERDAY</Name>
@@ -17071,7 +19185,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3237216</BitOffs>
+=======
+            <BitOffs>3237792</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.DATE_AND_TIME_SECPERWEEK</Name>
@@ -17086,7 +19204,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3237248</BitOffs>
+=======
+            <BitOffs>3237824</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.DBG_OUTPUT_NONE</Name>
@@ -17101,7 +19223,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3243456</BitOffs>
+=======
+            <BitOffs>3248128</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.DBG_OUTPUT_LOG</Name>
@@ -17116,7 +19242,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3243488</BitOffs>
+=======
+            <BitOffs>3248160</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.DBG_OUTPUT_FILE</Name>
@@ -17131,7 +19261,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3243520</BitOffs>
+=======
+            <BitOffs>3248192</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.DBG_OUTPUT_VISU</Name>
@@ -17146,7 +19280,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3243552</BitOffs>
+=======
+            <BitOffs>3248224</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.DEFAULT_CSV_FIELD_DOUBLE_QUOTE</Name>
@@ -17161,7 +19299,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3360720</BitOffs>
+=======
+            <BitOffs>3365392</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.DEFAULT_CSV_RECORD_SEP_CR</Name>
@@ -17176,7 +19318,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3360728</BitOffs>
+=======
+            <BitOffs>3365400</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.DEFAULT_CSV_RECORD_SEP_LF</Name>
@@ -17191,7 +19337,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3360736</BitOffs>
+=======
+            <BitOffs>3365408</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.EMPTY_GUID_STRUCT</Name>
@@ -17248,7 +19398,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3362464</BitOffs>
+=======
+            <BitOffs>3367136</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.EMPTY_GUID_STRING</Name>
@@ -17262,7 +19416,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3362592</BitOffs>
+=======
+            <BitOffs>3367264</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Variables.EMPTY_GUID_REGSTRING</Name>
@@ -17276,6 +19434,7 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3362888</BitOffs>
           </Symbol>
           <Symbol>
@@ -17304,6 +19463,9 @@
               </Property>
             </Properties>
             <BitOffs>3363224</BitOffs>
+=======
+            <BitOffs>3367560</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Constants.EMPTY_SEVERITY</Name>
@@ -17317,7 +19479,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3363312</BitOffs>
+=======
+            <BitOffs>3367984</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Version.stLibVersion_Tc2_IoFunctions</Name>
@@ -17330,11 +19496,19 @@
               </SubItem>
               <SubItem>
                 <Name>.iMinor</Name>
+<<<<<<< HEAD
                 <Value>3</Value>
               </SubItem>
               <SubItem>
                 <Name>.iBuild</Name>
                 <Value>13</Value>
+=======
+                <Value>4</Value>
+              </SubItem>
+              <SubItem>
+                <Name>.iBuild</Name>
+                <Value>5</Value>
+>>>>>>> 47039b5 (inital state machine for main)
               </SubItem>
               <SubItem>
                 <Name>.iRevision</Name>
@@ -17342,11 +19516,19 @@
               </SubItem>
               <SubItem>
                 <Name>.nFlags</Name>
+<<<<<<< HEAD
                 <Value>0</Value>
               </SubItem>
               <SubItem>
                 <Name>.sVersion</Name>
                 <String>3.3.13.0</String>
+=======
+                <Value>1</Value>
+              </SubItem>
+              <SubItem>
+                <Name>.sVersion</Name>
+                <String>3.4.5.0</String>
+>>>>>>> 47039b5 (inital state machine for main)
               </SubItem>
             </Default>
             <Properties>
@@ -17357,7 +19539,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3363328</BitOffs>
+=======
+            <BitOffs>3368000</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Version.stLibVersion_Tc2_ModbusSrv</Name>
@@ -17393,7 +19579,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3363616</BitOffs>
+=======
+            <BitOffs>3368288</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Version.stLibVersion_Tc2_SerialCom</Name>
@@ -17433,7 +19623,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3363904</BitOffs>
+=======
+            <BitOffs>3368576</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Constants.EMPTY_EVENT_CLASS</Name>
@@ -17490,7 +19684,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3364192</BitOffs>
+=======
+            <BitOffs>3368864</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Constants.EMPTY_EVENT_ID</Name>
@@ -17504,7 +19702,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3364320</BitOffs>
+=======
+            <BitOffs>3368992</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Constants.SUCCESS_EVENT</Name>
@@ -17569,7 +19771,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3364352</BitOffs>
+=======
+            <BitOffs>3369024</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>GVL.nLangId_OnlineMonitoring</Name>
@@ -17584,7 +19790,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3364544</BitOffs>
+=======
+            <BitOffs>3369216</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>ParameterList.cSourceNameSize</Name>
@@ -17599,7 +19809,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3364576</BitOffs>
+=======
+            <BitOffs>3369248</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Version.stLibVersion_Tc3_EventLogger</Name>
@@ -17612,11 +19826,19 @@
               </SubItem>
               <SubItem>
                 <Name>.iMinor</Name>
+<<<<<<< HEAD
                 <Value>1</Value>
               </SubItem>
               <SubItem>
                 <Name>.iBuild</Name>
                 <Value>33</Value>
+=======
+                <Value>3</Value>
+              </SubItem>
+              <SubItem>
+                <Name>.iBuild</Name>
+                <Value>13</Value>
+>>>>>>> 47039b5 (inital state machine for main)
               </SubItem>
               <SubItem>
                 <Name>.iRevision</Name>
@@ -17628,7 +19850,11 @@
               </SubItem>
               <SubItem>
                 <Name>.sVersion</Name>
+<<<<<<< HEAD
                 <String>3.1.33.0</String>
+=======
+                <String>3.3.13.0</String>
+>>>>>>> 47039b5 (inital state machine for main)
               </SubItem>
             </Default>
             <Properties>
@@ -17639,7 +19865,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3364608</BitOffs>
+=======
+            <BitOffs>3369280</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>GVL_INTERNAL.UNINITIALIZED_CLASS_GUID</Name>
@@ -17697,7 +19927,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3364896</BitOffs>
+=======
+            <BitOffs>3369568</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>.TCPADS_MAXUDP_BUFFSIZE</Name>
@@ -17711,7 +19945,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3365024</BitOffs>
+=======
+            <BitOffs>3369696</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Global_Version.stLibVersion_Tc3_JsonXml</Name>
@@ -17724,11 +19962,19 @@
               </SubItem>
               <SubItem>
                 <Name>.iMinor</Name>
+<<<<<<< HEAD
                 <Value>3</Value>
               </SubItem>
               <SubItem>
                 <Name>.iBuild</Name>
                 <Value>18</Value>
+=======
+                <Value>4</Value>
+              </SubItem>
+              <SubItem>
+                <Name>.iBuild</Name>
+                <Value>7</Value>
+>>>>>>> 47039b5 (inital state machine for main)
               </SubItem>
               <SubItem>
                 <Name>.iRevision</Name>
@@ -17740,7 +19986,11 @@
               </SubItem>
               <SubItem>
                 <Name>.sVersion</Name>
+<<<<<<< HEAD
                 <String>3.3.18.0</String>
+=======
+                <String>3.4.7.0</String>
+>>>>>>> 47039b5 (inital state machine for main)
               </SubItem>
             </Default>
             <Properties>
@@ -17751,6 +20001,7 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3365056</BitOffs>
           </Symbol>
           <Symbol>
@@ -17759,12 +20010,24 @@
             <BaseType>UINT</BaseType>
             <Default>
               <Value>1000</Value>
+=======
+            <BitOffs>3369728</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>Constants.bLittleEndian</Name>
+            <Comment> Does the target support multiple cores?</Comment>
+            <BitSize>8</BitSize>
+            <BaseType>BOOL</BaseType>
+            <Default>
+              <Bool>true</Bool>
+>>>>>>> 47039b5 (inital state machine for main)
             </Default>
             <Properties>
               <Property>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3365344</BitOffs>
           </Symbol>
           <Symbol>
@@ -17773,12 +20036,24 @@
             <BaseType>UINT</BaseType>
             <Default>
               <Value>100</Value>
+=======
+            <BitOffs>3383328</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>Constants.bSimulationMode</Name>
+            <Comment> Does the target support multiple cores?</Comment>
+            <BitSize>8</BitSize>
+            <BaseType>BOOL</BaseType>
+            <Default>
+              <Bool>false</Bool>
+>>>>>>> 47039b5 (inital state machine for main)
             </Default>
             <Properties>
               <Property>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3365360</BitOffs>
           </Symbol>
           <Symbol>
@@ -17787,12 +20062,24 @@
             <BaseType>UINT</BaseType>
             <Default>
               <Value>1000</Value>
+=======
+            <BitOffs>3383336</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>Constants.nRegisterSize</Name>
+            <Comment> Does the target support multiple cores?</Comment>
+            <BitSize>16</BitSize>
+            <BaseType>WORD</BaseType>
+            <Default>
+              <Value>32</Value>
+>>>>>>> 47039b5 (inital state machine for main)
             </Default>
             <Properties>
               <Property>
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>3365376</BitOffs>
           </Symbol>
           <Symbol>
@@ -18175,6 +20462,32 @@
               </Property>
             </Properties>
             <BitOffs>633586688</BitOffs>
+=======
+            <BitOffs>3383344</BitOffs>
+          </Symbol>
+          <Symbol>
+            <Name>MAIN.fbN2_01</Name>
+            <BitSize>1600</BitSize>
+            <BaseType>FB_N2</BaseType>
+            <Properties>
+              <Property>
+                <Name>TcLinkTo</Name>
+                <Value>
+		.rawInputmA := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 1^Value;
+		.bInduceButton := 
+		.bFinishExchangeButton :=
+		
+		.fbValveRelay.rawOutputRelayChan1 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output;
+		.fbValveRelay.rawOutputRelayChan3 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 2^Output;
+		.fbValveRelay.bCloseRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 1^Input;
+		.fbValveRelay.bOpenRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 2^Input;
+		.fbValveRelay.bMovingRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 3^Input;
+			
+	</Value>
+              </Property>
+            </Properties>
+            <BitOffs>3383360</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Constants.RuntimeVersion</Name>
@@ -18204,7 +20517,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>633587744</BitOffs>
+=======
+            <BitOffs>3384960</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Constants.CompilerVersion</Name>
@@ -18234,6 +20551,7 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>633587808</BitOffs>
           </Symbol>
           <Symbol>
@@ -18250,6 +20568,9 @@
               </Property>
             </Properties>
             <BitOffs>633587872</BitOffs>
+=======
+            <BitOffs>3385024</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Constants.nPackMode</Name>
@@ -18264,7 +20585,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>633587888</BitOffs>
+=======
+            <BitOffs>3385088</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Constants.bFPUSupport</Name>
@@ -18279,7 +20604,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>633587904</BitOffs>
+=======
+            <BitOffs>3385104</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Constants.bMulticoreSupport</Name>
@@ -18293,7 +20622,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>633587912</BitOffs>
+=======
+            <BitOffs>3385112</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Constants.RuntimeVersionNumeric</Name>
@@ -18308,7 +20641,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>633587936</BitOffs>
+=======
+            <BitOffs>3385120</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>Constants.CompilerVersionNumeric</Name>
@@ -18323,7 +20660,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>633587968</BitOffs>
+=======
+            <BitOffs>3385152</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>TwinCAT_SystemInfoVarList._AppInfo</Name>
@@ -18337,7 +20678,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>633588000</BitOffs>
+=======
+            <BitOffs>3385184</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>TwinCAT_SystemInfoVarList._TaskPouOid_PlcTask</Name>
@@ -18351,7 +20696,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>633590048</BitOffs>
+=======
+            <BitOffs>3387232</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>TwinCAT_SystemInfoVarList._TaskInfo</Name>
@@ -18369,7 +20718,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>633590080</BitOffs>
+=======
+            <BitOffs>3387264</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>TwinCAT_SystemInfoVarList._TaskOid_PlcTask</Name>
@@ -18383,7 +20736,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>633591104</BitOffs>
+=======
+            <BitOffs>3388288</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>TwinCAT_SystemInfoVarList.__PlcTask</Name>
@@ -18404,7 +20761,11 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>633591136</BitOffs>
+=======
+            <BitOffs>3388320</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
           <Symbol>
             <Name>TC_EVENTS.LCLSGeneralEventClass</Name>
@@ -18430,6 +20791,7 @@
                 <Name>TcVarGlobal</Name>
               </Property>
             </Properties>
+<<<<<<< HEAD
             <BitOffs>633642656</BitOffs>
           </Symbol>
           <Symbol>
@@ -18449,6 +20811,9 @@
               </Property>
             </Properties>
             <BitOffs>635395456</BitOffs>
+=======
+            <BitOffs>3440096</BitOffs>
+>>>>>>> 47039b5 (inital state machine for main)
           </Symbol>
         </DataArea>
       </DataAreas>
@@ -18465,6 +20830,7 @@
         </Property>
         <Property>
           <Name>ChangeDate</Name>
+<<<<<<< HEAD
           <Value>2525-07-08T13:52:31</Value>
         </Property>
         <Property>
@@ -18474,6 +20840,17 @@
         <Property>
           <Name>GlobalDataSize</Name>
           <Value>78864384</Value>
+=======
+          <Value>2025-07-16T10:47:26</Value>
+        </Property>
+        <Property>
+          <Name>GeneratedCodeSize</Name>
+          <Value>221184</Value>
+        </Property>
+        <Property>
+          <Name>GlobalDataSize</Name>
+          <Value>61440</Value>
+>>>>>>> 47039b5 (inital state machine for main)
         </Property>
       </Properties>
     </Module>
