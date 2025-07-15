@@ -7,18 +7,18 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	b_open : BOOL; // control variable
-	// EL2624 Relayu Logic Here
+    b_open : BOOL; // control variable
+    // EL2624 Relayu Logic Here
 
-	rawOutputRelayChan1 AT %Q*: BOOL;
-	rawOutputRelayChan3 AT %Q*: BOOL;
-	bCloseRBV AT %I* : BOOL;
-	bOpenRBV AT %I* : BOOL;
-	bMovingRBV AT %I* : BOOL;
-	
-	tActuateTime : TIME := T#24h;
-	fbValveTimer : TON;
-	iState: INT;
+    rawOutputRelayChan1 AT %Q*: BOOL;
+    rawOutputRelayChan3 AT %Q*: BOOL;
+    bCloseRBV AT %I* : BOOL;
+    bOpenRBV AT %I* : BOOL;
+    bMovingRBV AT %I* : BOOL;
+
+    tActuateTime : TIME := T#24h;
+    fbValveTimer : TON;
+    iState: INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -33,17 +33,17 @@ CASE iState OF
     iState := 1;
 
     1: // NOMINAL
-	ACTUATE_VALVE(b_open); 
- 
-	IF fbValveTimer.Q THEN iState := 2; END_IF
-	
-	2: // Do the opposite of current valve state
-	IF bCloseRBV THEN ACTUATE_VALVE(TRUE);END_IF
-	IF bOpenRBV THEN ACTUATE_VALVE(FALSE);END_IF
-	IF bMovingRBV THEN iState := 3; END_IF; // Only transition when we have started to move
-	
-	3: // Go back to init to reset timer and return valve to previous state.
-	IF NOT bMovingRBV THEN iState := 0; END_IF;
+    ACTUATE_VALVE(b_open);
+
+    IF fbValveTimer.Q THEN iState := 2; END_IF
+
+    2: // Do the opposite of current valve state
+    IF bCloseRBV THEN ACTUATE_VALVE(TRUE);END_IF
+    IF bOpenRBV THEN ACTUATE_VALVE(FALSE);END_IF
+    IF bMovingRBV THEN iState := 3; END_IF; // Only transition when we have started to move
+
+    3: // Go back to init to reset timer and return valve to previous state.
+    IF NOT bMovingRBV THEN iState := 0; END_IF;
 
 END_CASE
 
@@ -52,16 +52,16 @@ END_CASE
     <Method Name="ACTUATE_VALVE" Id="{919e3d16-476c-4acf-ad5c-4fabd5d630e2}">
       <Declaration><![CDATA[METHOD ACTUATE_VALVE : BOOL
 VAR_INPUT
-	b_open: BOOL;
+    b_open: BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF b_open THEN
-	rawOutputRelayChan1 := FALSE;
-	rawOutputRelayChan3 := TRUE;
+    rawOutputRelayChan1 := FALSE;
+    rawOutputRelayChan3 := TRUE;
 ELSE
-	rawOutputRelayChan1 := TRUE;
-	rawOutputRelayChan3 := FALSE;
+    rawOutputRelayChan1 := TRUE;
+    rawOutputRelayChan3 := FALSE;
 END_IF]]></ST>
       </Implementation>
     </Method>
