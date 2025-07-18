@@ -3,110 +3,26 @@
   <POU Name="MAIN" Id="{33620bff-f8ff-418a-9b35-0303bd8eb7b6}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-    {attribute 'TcLinkTo' := '
-        .rawInputmA := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 1^Value;
-        .bInduceButton :=
-        .bFinishExchangeButton :=
-
-	fPress : LREAL;
-	
-	bInduceButton AT %I*	: BOOL;
-	bFinishExchangeButton AT %I*	: BOOL;
-	fMinPressureThresh 		: LREAL;
-	fMinMassThresh			: LREAL;
-	fWarningThresh: LREAL;
-	eLEDMode : ENUM_LED_MODES;
-	bValveTimerQ : BOOL;
-
-
-    {attribute 'pytmc' := 'pv: XBD:N2:MAX_MASS'}
-    maxMass: LREAL;
-    {attribute 'pytmc' := 'pv: XBD:N2:MIN_MASS'}
-    minMass: LREAL;
-    {attribute 'pytmc' := 'pv: XBD:N2:CURRENT_MASS'}
-    fMassofGas: LREAL;
-
-    {attribute 'pytmc' := 'pv: XBD:N2:LOW_LEVEL'}
-    fMassLowLevl : LREAL := maxMass / 2;
-    bMassIsLow : BOOL := FALSE;
-
 	{attribute 'TcLinkTo' := '
-		.rawOutputRelayChan1 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output;
-		.rawOutputRelayChan3 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 2^Output;
-		.bCloseRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 1^Input;
-		.bOpenRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 2^Input;
-		.bMovingRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 3^Input;
+		.rawInputmA := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 1^Value;
+		.bInduceButton := 
+		.bFinishExchangeButton :=
+		
+		.fbValveRelay.rawOutputRelayChan1 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output;
+		.fbValveRelay.rawOutputRelayChan3 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 2^Output;
+		.fbValveRelay.bCloseRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 1^Input;
+		.fbValveRelay.bOpenRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 2^Input;
+		.fbValveRelay.bMovingRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 3^Input;
+			
 	'}
-    fbValveRelay : FB_VALVE_RELAY;
-
-    bInit : BOOL := TRUE;
-    iState : INT  := 0;
+	fbN2_01 : FB_N2;
 
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF bInit THEN
-    maxMass := 500;
-    minMass := 0;
-    bInit := FALSE;
-END_IF
-
-fbValveRelay(bTimerQ=>bValveTimerQ);
-//fbLightTower(iLIGHT_MODE);
-
-fbGetmA(
-    iRaw := rawInputmA,
-    iTermBits := 12,
-    fTermMax := 20,
-    fTermMin := 4,
-    fReal => fmA
-);
-
-fMassofGas := (fmA - 4.0) / 16.0 * maxMass + minMass;
-
-CASE iState OF
-	ENUM_MAIN_STATE_MACHINE.INIT: // INIT
-	fbValveRelay.ACTUATE_VALVE(FALSE);
-	IF ((fPress > fMinPressureThresh) AND (fmA > fMinMassThresh)) THEN 
-		fbValveRelay.ACTUATE_VALVE(TRUE); 
-	END_IF
-	iState := ENUM_MAIN_STATE_MACHINE.NOMINAL;
-	
-    ENUM_MAIN_STATE_MACHINE.NOMINAL: // Nominal
-    IF  ((fPress < fMinPressureThresh) OR (fmA < fMinMassThresh) OR (bInduceButton)) THEN
-		// TURN LIGHT RED
-        iState := ENUM_MAIN_STATE_MACHINE.EXCHANGE_MODE;
-		fbValveRelay.ACTUATE_VALVE(FALSE);
-    END_IF
-	
-	IF (fmA < fWarningThresh) THEN 
-		// TURN ON YELLOW LIGHT
-	END_IF
-	
-	IF(bValveTimerQ) THEN
-		// FLASH YELLO LIGHT
-	END_IF
-	
-    ENUM_MAIN_STATE_MACHINE.EXCHANGE_MODE: // EXCHANGE MODE
-	IF (bInduceButton) THEN
-		// TURN FLASHY RED
-	END_IF
-	IF  ((bFinishExchangeButton)) THEN
-        iState := ENUM_MAIN_STATE_MACHINE.INIT;
-		// TURN OFF RED LIGHT
-    END_IF
-	
-	
-
-END_CASE
-
-
-]]></ST>
+      <ST><![CDATA[fbN2_01();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="3" Count="22" />
-      <LineId Id="99" Count="1" />
-      <LineId Id="26" Count="30" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

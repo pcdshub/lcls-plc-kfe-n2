@@ -40,17 +40,17 @@ CASE iState OF
     iState := E_VALVE_RELAY_STATES.NOMINAL;
 
     E_VALVE_RELAY_STATES.NOMINAL: // NOMINAL
-    ACTUATE_VALVE(b_open);
-
-    IF fbValveTimer.Q THEN iState := E_VALVE_RELAY_STATES.ACTUATE; END_IF
-
-    E_VALVE_RELAY_STATES.ACTUATE: // Do the opposite of current valve state
-    IF bCloseRBV THEN ACTUATE_VALVE(TRUE);END_IF
-    IF bOpenRBV THEN ACTUATE_VALVE(FALSE);END_IF
-    IF bMovingRBV THEN iState := E_VALVE_RELAY_STATES.WAIT; END_IF; // Only transition when we have started to move
-
-    E_VALVE_RELAY_STATES.WAIT: // Go back to init to reset timer and return valve to previous state.
-    IF NOT bMovingRBV THEN iState := E_VALVE_RELAY_STATES.INIT; END_IF;
+	ACTUATE_VALVE(b_open); 
+ 
+	IF fbValveTimer.Q THEN iState := E_VALVE_RELAY_STATES.ACTUATE; END_IF
+	
+	E_VALVE_RELAY_STATES.ACTUATE: // Do the opposite of current valve state
+	IF bCloseRBV THEN ACTUATE_VALVE(TRUE);END_IF
+	IF bOpenRBV THEN ACTUATE_VALVE(FALSE);END_IF
+	IF bMovingRBV THEN iState := E_VALVE_RELAY_STATES.WAIT; END_IF; // Only transition when we have started to move
+	
+	E_VALVE_RELAY_STATES.WAIT: // Go back to init to reset timer and return valve to previous state.
+	IF NOT bMovingRBV THEN iState := E_VALVE_RELAY_STATES.INIT; END_IF;
 
 END_CASE
 
@@ -74,5 +74,13 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="FB_VALVE_RELAY">
+      <LineId Id="3" Count="22" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_VALVE_RELAY.ACTUATE_VALVE">
+      <LineId Id="3" Count="7" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

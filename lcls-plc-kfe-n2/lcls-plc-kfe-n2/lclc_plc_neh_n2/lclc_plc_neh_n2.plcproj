@@ -15,6 +15,9 @@
   </PropertyGroup>
   <ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e47d4aa (Fb Valve use Enum and restructure)
     <Compile Include="DUTs\E_MAIN_STATE_MACHINE.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -22,9 +25,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\E_VALVE_RELAY_STATES.TcDUT">
+<<<<<<< HEAD
 =======
     <Compile Include="DUTs\ENUM_LED_MODES.TcDUT">
 >>>>>>> 3be6fe3 (added ST for LED FB)
+=======
+>>>>>>> e47d4aa (Fb Valve use Enum and restructure)
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">

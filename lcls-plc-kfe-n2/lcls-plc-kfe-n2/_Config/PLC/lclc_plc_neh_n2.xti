@@ -1,11 +1,15 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.32" ClassName="CNestedPlcProjDef">
 	<Project GUID="{E7B2A131-7601-4CB6-9E2A-2C803CB2E77E}" Name="lclc_plc_neh_n2" PrjFilePath="..\..\lclc_plc_neh_n2\lclc_plc_neh_n2.plcproj" TmcFilePath="..\..\lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+<<<<<<< HEAD
 <<<<<<< HEAD
 		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{A78A1EFB-4DBA-4126-B7B2-640EF0A29567}">
 =======
 		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{1673B273-1769-2E0D-D447-2AB830B4369D}">
 >>>>>>> 1032373 (inital state machine for main)
+=======
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{17000A49-662C-CC4F-AF9C-0613FF2DE37B}">
+>>>>>>> e47d4aa (Fb Valve use Enum and restructure)
 			<Name>lclc_plc_neh_n2 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -16,7 +20,10 @@
 				</Var>
 				<Var>
 					<Name>MAIN.fbN2_01.bInduceButton</Name>
+<<<<<<< HEAD
 					<Comment><![CDATA[ WILL KEEP AS PVS FOR NOW, CAN BE PHYSICAL BUTTONS AT SOME POINT]]></Comment>
+=======
+>>>>>>> e47d4aa (Fb Valve use Enum and restructure)
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
@@ -36,6 +43,7 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
+<<<<<<< HEAD
 					<Name>MAIN.fbN2_01.fbLEDTower.bGreenPin</Name>
 					<Type>BOOL</Type>
 				</Var>
@@ -48,6 +56,8 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
+=======
+>>>>>>> e47d4aa (Fb Valve use Enum and restructure)
 					<Name>MAIN.fbN2_01.fbGetmA.iRaw</Name>
 					<Comment><![CDATA[ Connect this input to the terminal]]></Comment>
 					<Type>DINT</Type>
