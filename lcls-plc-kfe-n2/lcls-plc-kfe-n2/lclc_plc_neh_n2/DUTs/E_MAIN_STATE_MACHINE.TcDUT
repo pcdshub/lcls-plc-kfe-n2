@@ -5,10 +5,10 @@
 {attribute 'strict'}
 TYPE E_MAIN_STATE_MACHINE :
 (
-	INIT := 0,
-	NOMINAL := 1,
-	EXCHANGE_MODE := 2
-	
+    INIT := 0,
+    NOMINAL := 1,
+    EXCHANGE_MODE := 2
+
 );
 END_TYPE
 ]]></Declaration>

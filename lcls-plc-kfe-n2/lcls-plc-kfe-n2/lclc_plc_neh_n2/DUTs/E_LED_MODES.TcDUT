@@ -5,11 +5,11 @@
 {attribute 'strict'}
 TYPE E_LED_MODES :
 (
-	SOLID_YELLOW := 0,
-	FLASH_YELLOW := 1,
-	SOLID_RED := 2,
-	FLASH_RED := 3,
-	SOLID_GREEN := 4
+    SOLID_YELLOW := 0,
+    FLASH_YELLOW := 1,
+    SOLID_RED := 2,
+    FLASH_RED := 3,
+    SOLID_GREEN := 4
 );
 END_TYPE
 ]]></Declaration>

@@ -5,10 +5,10 @@
 {attribute 'strict'}
 TYPE E_VALVE_RELAY_STATES :
 (
-	INIT := 0,
-	NOMINAL := 1,
-	ACTUATE := 2,
-	WAIT := 3
+    INIT := 0,
+    NOMINAL := 1,
+    ACTUATE := 2,
+    WAIT := 3
 );
 END_TYPE
 ]]></Declaration>

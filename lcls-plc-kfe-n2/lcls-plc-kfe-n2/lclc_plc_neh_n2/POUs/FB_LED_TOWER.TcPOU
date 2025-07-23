@@ -3,7 +3,7 @@
   <POU Name="FB_LED_TOWER" Id="{a0e8d6d7-c791-4c41-83b0-d6756ae3b39b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_LED_TOWER
 VAR_INPUT
-	eLEDMode : E_LED_MODES;
+    eLEDMode : E_LED_MODES;
 END_VAR
 VAR_OUTPUT
 END_VAR
@@ -13,8 +13,5 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <LineIds Name="FB_LED_TOWER">
-      <LineId Id="9" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

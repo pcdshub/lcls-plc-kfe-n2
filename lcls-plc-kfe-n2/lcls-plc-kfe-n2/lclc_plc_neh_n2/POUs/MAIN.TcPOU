@@ -3,27 +3,24 @@
   <POU Name="MAIN" Id="{33620bff-f8ff-418a-9b35-0303bd8eb7b6}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	{attribute 'TcLinkTo' := '
-		.rawInputmA := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 1^Value;
-		.bInduceButton := 
-		.bFinishExchangeButton :=
-		
-		.fbValveRelay.rawOutputRelayChan1 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output;
-		.fbValveRelay.rawOutputRelayChan3 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 2^Output;
-		.fbValveRelay.bCloseRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 1^Input;
-		.fbValveRelay.bOpenRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 2^Input;
-		.fbValveRelay.bMovingRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 3^Input;
-			
-	'}
-	fbN2_01 : FB_N2;
+    {attribute 'TcLinkTo' := '
+        .rawInputmA := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 1^Value;
+        .bInduceButton :=
+        .bFinishExchangeButton :=
+
+        .fbValveRelay.rawOutputRelayChan1 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output;
+        .fbValveRelay.rawOutputRelayChan3 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 2^Output;
+        .fbValveRelay.bCloseRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 1^Input;
+        .fbValveRelay.bOpenRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 2^Input;
+        .fbValveRelay.bMovingRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 3^Input;
+
+    '}
+    fbN2_01 : FB_N2;
 
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbN2_01();]]></ST>
     </Implementation>
-    <LineIds Name="MAIN">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
