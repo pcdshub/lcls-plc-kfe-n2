@@ -1,17 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_LED_TOWER" Id="{a0e8d6d7-c791-4c41-83b0-d6756ae3b39b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_LED_TOWER
 VAR_INPUT
     eLEDMode : E_LED_MODES;
+	tFlashInterval : TIME;
+	bFlashing : BOOL := FALSE;
+	
 END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	bGreenPin AT %I* : BOOL;
+	bYellowPin AT %I* : BOOL;
+	bRedPin AT %I* : BOOL;
+	
+	tLEDFLashTimerON : TON;
+	tLEDFLashTimerOFF : TOF;
+	
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[IF eLEDMode = E_LED_MODES.OFF THEN
+	bGreenPin := FALSE;
+	bYellowPin := FALSE;
+	bRedPin := FALSE;
+	RETURN;
+END_IF
+
+tLEDFLashTimerON(IN:=bFlashing, PT:=tFlashInterval);
+tLEDFLashTimerOFF(IN:= NOT tLEDFLashTimerON.Q, PT:=tFlashInterval);
+
+bGreenPin := FALSE;
+bYellowPin := FALSE;
+bRedPin := FALSE;
+
+CASE eLEDMode OF
+	E_LED_MODES.GREEN:
+		bGreenPin := NOT bFlashing OR tLEDFLashTimerON.Q;
+	E_LED_MODES.YELLOW:
+		bYellowPin := NOT bFlashing OR tLEDFLashTimerON.Q;
+		bRedPin := FALSE;
+	E_LED_MODES.RED:
+		bRedPin :=  NOT bFlashing OR tLEDFLashTimerON.Q;
+END_CASE
+
+IF NOT tLEDFLashTimerOFF.Q THEN
+	tLEDFLashTimerON(IN:=FALSE); 
+END_IF
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

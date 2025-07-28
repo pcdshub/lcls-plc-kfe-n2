@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_N2" Id="{aeb2ab87-fb12-4b59-baa6-7d020d5a4fa4}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_N2
 VAR_INPUT
@@ -9,9 +9,14 @@ END_VAR
 VAR
 
     rawInputmA AT %I*: INT;
+	
+	// WILL KEEP AS PVS FOR NOW, CAN BE PHYSICAL BUTTONS AT SOME POINT
+	{attribute 'pytmc' := 'pv: START_EXCHANGE'}
     bInduceButton AT %I*	: BOOL;
+	{attribute 'pytmc' := 'pv: FINISH_EXCHANGE'}
     bFinishExchangeButton AT %I*	: BOOL;
 
+	{attribute 'pytmc' := 'pv: VALVE'}
     fbValveRelay 	: FB_VALVE_RELAY;
     fbLEDTower		: FB_LED_TOWER;
     fbGetmA: FB_AnalogInput;
@@ -21,10 +26,14 @@ VAR
     maxMass: LREAL;
     {attribute 'pytmc' := 'pv: MIN_MASS'}
     minMass: LREAL;
-    {attribute 'pytmc' := 'pv: CURRENT_MASS'}
+    {attribute 'pytmc' := 'pv: GASS_MASS'}
     fMassofGas: LREAL;
+	{attribute 'pytmc' := 'pv: MASS'}
     fmA: LREAL;
+	
+	{attribute 'pytmc' := 'pv: PRESSURE'}
     fPress : LREAL;
+	
     // WILL NEED SOME SENSABLE DEFAULT HERE?
     fMinPressureThresh 		: LREAL ;
     fMinMassThresh			: LREAL;
@@ -33,7 +42,10 @@ VAR
     eLEDMode : E_LED_MODES;
     bValveTimerQ : BOOL;
     bInit : BOOL := TRUE;
+	
+	{attribute 'pytmc' := 'pv: STATE'}
     iState : INT  := 0;
+	bFlashFlag : BOOL := FALSE;
 
 END_VAR
 ]]></Declaration>
@@ -43,7 +55,7 @@ END_VAR
 END_IF
 
 fbValveRelay(bTimerQ=>bValveTimerQ);
-fbLEDTower(eLEDMode := eLEDMode);
+fbLEDTower(eLEDMode := eLEDMode, tFlashInterval:= T#1s, bFlashing:=bFlashFlag);
 
 fbGetmA(
     iRaw := rawInputmA,
@@ -65,26 +77,40 @@ CASE iState OF
 
     E_MAIN_STATE_MACHINE.NOMINAL: // Nominal
     IF  ((fPress < fMinPressureThresh) OR (fmA < fMinMassThresh) OR (bInduceButton)) THEN
-        eLEDMode := E_LED_MODES.SOLID_RED;
+		// SOLID RED
+        eLEDMode := E_LED_MODES.RED;
+		bFlashFlag := FALSE;
         iState := E_MAIN_STATE_MACHINE.EXCHANGE_MODE;
         fbValveRelay.ACTUATE_VALVE(FALSE);
     END_IF
 
     IF (fmA < fWarningThresh) THEN
-        eLEDMode := E_LED_MODES.SOLID_YELLOW;
+		// SOLID YELLOW
+        eLEDMode := E_LED_MODES.YELLOW;
+		bFlashFlag := FALSE;
     END_IF
 
     IF(bValveTimerQ) THEN
-        eLEDMode := E_LED_MODES.FLASH_YELLOW;
+		// FLASHING YELLOW
+        eLEDMode := E_LED_MODES.YELLOW;
+		bFlashFlag := TRUE;
     END_IF
 
     E_MAIN_STATE_MACHINE.EXCHANGE_MODE: // EXCHANGE MODE
     IF (bInduceButton) THEN
-        eLEDMode := E_LED_MODES.FLASH_RED;
+		// FLASHING RED 
+        eLEDMode := E_LED_MODES.RED;
+		bFlashFlag := TRUE;
     END_IF
     IF  ((bFinishExchangeButton)) THEN
         iState := E_MAIN_STATE_MACHINE.INIT;
-        eLEDMode := E_LED_MODES.SOLID_GREEN;
+		// SOLID GREEN
+        eLEDMode := E_LED_MODES.GREEN;
+		bFlashFlag := FALSE;
+		
+		// RESET BUTTON PRESSES
+		bInduceButton := FALSE; 
+		bFinishExchangeButton := FALSE;
     END_IF
 
 END_CASE]]></ST>

@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="MAIN" Id="{33620bff-f8ff-418a-9b35-0303bd8eb7b6}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	{attribute 'pytmc' := 'pv: KFE:N2:01'}
     {attribute 'TcLinkTo' := '
         .rawInputmA := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 1^Value;
-        .bInduceButton :=
-        .bFinishExchangeButton :=
+        .bInduceButton :=;
+        .bFinishExchangeButton :=;
 
         .fbValveRelay.rawOutputRelayChan1 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output;
         .fbValveRelay.rawOutputRelayChan3 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 2^Output;
