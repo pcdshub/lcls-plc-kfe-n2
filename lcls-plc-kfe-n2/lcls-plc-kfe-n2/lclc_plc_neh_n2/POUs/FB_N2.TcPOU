@@ -19,32 +19,57 @@ VAR
 	{attribute 'pytmc' := 'pv: VALVE'}
     fbValveRelay 	: FB_VALVE_RELAY;
     fbLEDTower		: FB_LED_TOWER;
-    fbGetmA: FB_AnalogInput;
 
-
-    {attribute 'pytmc' := 'pv: MAX_MASS'}
+    {attribute 'pytmc' := '
+		pv: MAX_MASS
+		field: EGU lbs
+	'}
     maxMass: LREAL;
-    {attribute 'pytmc' := 'pv: MIN_MASS'}
+    {attribute 'pytmc' := '
+		pv: MIN_MASS
+		field: EGU lbs
+	'}
     minMass: LREAL;
-    {attribute 'pytmc' := 'pv: GASS_MASS'}
+    {attribute 'pytmc' := '
+		pv: MASS
+		field: EGU lbs
+	'}
     fMassofGas: LREAL;
-	{attribute 'pytmc' := 'pv: MASS'}
     fmA: LREAL;
 	
-	{attribute 'pytmc' := 'pv: PRESSURE'}
-    fPress : LREAL;
+	{attribute 'pytmc' := '
+		pv: PRESSURE
+		field: EGU psi/g
+	'}
+	fPress : LREAL;
+	fPressMa : LREAL;
+    iPressRaw AT %I*	: INT;
 	
     // WILL NEED SOME SENSABLE DEFAULT HERE?
+	{attribute 'pytmc' := '
+		pv: MIN_PRESS_THRESHOLD
+		field: EGU psi/g
+	'}
     fMinPressureThresh 		: LREAL ;
+	{attribute 'pytmc' := '
+		pv: MIN_MASS_THRESHOLD
+		field: EGU lbs
+	'}
     fMinMassThresh			: LREAL;
+	{attribute 'pytmc' := '
+		pv: MASS_WARNING_THRESHOLD
+		field: EGU lbs
+	'}
     fWarningThresh: LREAL;
     //
+	{attribute 'pytmc' := 'pv: LED'}
     eLEDMode : E_LED_MODES;
     bValveTimerQ : BOOL;
     bInit : BOOL := TRUE;
 	
 	{attribute 'pytmc' := 'pv: STATE'}
     iState : INT  := 0;
+	{attribute 'pytmc' := 'pv: LED_FLASH'}
 	bFlashFlag : BOOL := FALSE;
 
 END_VAR
@@ -57,23 +82,24 @@ END_IF
 fbValveRelay(bTimerQ=>bValveTimerQ);
 fbLEDTower(eLEDMode := eLEDMode, tFlashInterval:= T#1s, bFlashing:=bFlashFlag);
 
-fbGetmA(
-    iRaw := rawInputmA,
-    iTermBits := 12,
-    fTermMax := 20,
-    fTermMin := 4,
-    fReal => fmA
-);
-
+fmA := (rawInputmA / 32768.0) * 16.0 + 4; 
 fMassofGas := (fmA - 4.0) / 16.0 * maxMass + minMass;
+
+fPressMa := (iPressRaw / 32768.0) * 16.0 + 4; 
+fPress := (fPressMa - 4.0) / 16.0 * 500;
 
 CASE iState OF
     E_MAIN_STATE_MACHINE.INIT: // INIT
-    fbValveRelay.ACTUATE_VALVE(FALSE);
+  
     IF ((fPress > fMinPressureThresh) AND (fmA > fMinMassThresh)) THEN
         fbValveRelay.ACTUATE_VALVE(TRUE);
+	ELSE 
+		fbValveRelay.ACTUATE_VALVE(FALSE);
     END_IF
+	
     iState := E_MAIN_STATE_MACHINE.NOMINAL;
+	eLEDMode := E_LED_MODES.GREEN;
+	bFlashFlag := FALSE;
 
     E_MAIN_STATE_MACHINE.NOMINAL: // Nominal
     IF  ((fPress < fMinPressureThresh) OR (fmA < fMinMassThresh) OR (bInduceButton)) THEN
@@ -82,14 +108,17 @@ CASE iState OF
 		bFlashFlag := FALSE;
         iState := E_MAIN_STATE_MACHINE.EXCHANGE_MODE;
         fbValveRelay.ACTUATE_VALVE(FALSE);
+	ELSE
+		eLEDMode := E_LED_MODES.GREEN;
+		bFlashFlag := FALSE;
     END_IF
-
+	
     IF (fmA < fWarningThresh) THEN
 		// SOLID YELLOW
         eLEDMode := E_LED_MODES.YELLOW;
 		bFlashFlag := FALSE;
-    END_IF
-
+    END_IF	
+	
     IF(bValveTimerQ) THEN
 		// FLASHING YELLOW
         eLEDMode := E_LED_MODES.YELLOW;

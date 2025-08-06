@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{A78A1EFB-4DBA-4126-B7B2-640EF0A29567}">
 =======
 		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{1673B273-1769-2E0D-D447-2AB830B4369D}">
@@ -14,18 +15,25 @@
 =======
 		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{4CC7190D-25CC-21A3-5285-E9DF8B716C69}">
 >>>>>>> f497707 (CHANGE LED TOWER ENUMS and Inital Code)
+=======
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{25ECB686-4027-E6E2-08B7-156AA1B0F3F4}">
+>>>>>>> b7ba6d2 (linked new io, fixed weight calculation)
 			<Name>lclc_plc_neh_n2 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
-					<Name>MAIN.fbN2_01.rawInputmA</Name>
+					<Name>MAIN.fbN2_Left.rawInputmA</Name>
 					<Type>INT</Type>
 				</Var>
 				<Var>
+<<<<<<< HEAD
 					<Name>MAIN.fbN2_01.bInduceButton</Name>
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+					<Name>MAIN.fbN2_Left.bInduceButton</Name>
+>>>>>>> b7ba6d2 (linked new io, fixed weight calculation)
 					<Comment><![CDATA[ WILL KEEP AS PVS FOR NOW, CAN BE PHYSICAL BUTTONS AT SOME POINT]]></Comment>
 =======
 >>>>>>> e47d4aa (Fb Valve use Enum and restructure)
@@ -35,38 +43,43 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>MAIN.fbN2_01.bFinishExchangeButton</Name>
+					<Name>MAIN.fbN2_Left.bFinishExchangeButton</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>MAIN.fbN2_01.fbValveRelay.bCloseRBV</Name>
+					<Name>MAIN.fbN2_Left.fbValveRelay.bCloseRBV</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>MAIN.fbN2_01.fbValveRelay.bOpenRBV</Name>
+					<Name>MAIN.fbN2_Left.fbValveRelay.bOpenRBV</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>MAIN.fbN2_01.fbValveRelay.bMovingRBV</Name>
+					<Name>MAIN.fbN2_Left.fbValveRelay.bMovingRBV</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> f497707 (CHANGE LED TOWER ENUMS and Inital Code)
 					<Name>MAIN.fbN2_01.fbLEDTower.bGreenPin</Name>
+=======
+					<Name>MAIN.fbN2_Left.fbLEDTower.bGreenPin</Name>
+>>>>>>> b7ba6d2 (linked new io, fixed weight calculation)
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>MAIN.fbN2_01.fbLEDTower.bYellowPin</Name>
+					<Name>MAIN.fbN2_Left.fbLEDTower.bYellowPin</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>MAIN.fbN2_01.fbLEDTower.bRedPin</Name>
+					<Name>MAIN.fbN2_Left.fbLEDTower.bRedPin</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> e47d4aa (Fb Valve use Enum and restructure)
@@ -75,17 +88,71 @@
 					<Name>MAIN.fbN2_01.fbGetmA.iRaw</Name>
 					<Comment><![CDATA[ Connect this input to the terminal]]></Comment>
 					<Type>DINT</Type>
+=======
+					<Name>MAIN.fbN2_Left.iPressRaw</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_Right.rawInputmA</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_Right.bInduceButton</Name>
+					<Comment><![CDATA[ WILL KEEP AS PVS FOR NOW, CAN BE PHYSICAL BUTTONS AT SOME POINT]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_Right.bFinishExchangeButton</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_Right.fbValveRelay.bCloseRBV</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_Right.fbValveRelay.bOpenRBV</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_Right.fbValveRelay.bMovingRBV</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_Right.fbLEDTower.bGreenPin</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_Right.fbLEDTower.bYellowPin</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_Right.fbLEDTower.bRedPin</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_Right.iPressRaw</Name>
+					<Type>INT</Type>
+>>>>>>> b7ba6d2 (linked new io, fixed weight calculation)
 				</Var>
 			</Vars>
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>MAIN.fbN2_01.fbValveRelay.rawOutputRelayChan1</Name>
+					<Name>MAIN.fbN2_Left.fbValveRelay.rawOutputRelayChan1</Name>
 					<Comment><![CDATA[ EL2624 Relayu Logic Here]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>MAIN.fbN2_01.fbValveRelay.rawOutputRelayChan3</Name>
+					<Name>MAIN.fbN2_Left.fbValveRelay.rawOutputRelayChan3</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_Right.fbValveRelay.rawOutputRelayChan1</Name>
+					<Comment><![CDATA[ EL2624 Relayu Logic Here]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_Right.fbValveRelay.rawOutputRelayChan3</Name>
 					<Type>BOOL</Type>
 				</Var>
 			</Vars>
@@ -107,17 +174,29 @@
 	</Project>
 	<Mappings>
 		<OwnerA Name="lclc_plc_neh_n2 Instance">
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 14 (EL1004)">
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_Left.fbValveRelay.bCloseRBV" VarB="Channel 1^Input" AutoLink="true" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_Left.fbValveRelay.bMovingRBV" VarB="Channel 3^Input" AutoLink="true" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_Left.fbValveRelay.bOpenRBV" VarB="Channel 2^Input" AutoLink="true" Size="1"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)">
-				<Link VarA="PlcTask Inputs^MAIN.fbN2_01.rawInputmA" VarB="AI Standard Channel 1^Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_Left.rawInputmA" VarB="AI Standard Channel 1^Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_Right.rawInputmA" VarB="AI Standard Channel 2^Value" AutoLink="true"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EL3052)">
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_Left.iPressRaw" VarB="AI Standard Channel 1^Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_Right.iPressRaw" VarB="AI Standard Channel 2^Value" AutoLink="true"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)">
-				<Link VarA="PlcTask Outputs^MAIN.fbN2_01.fbValveRelay.rawOutputRelayChan1" VarB="Channel 1^Output" AutoLink="true" Size="1"/>
-				<Link VarA="PlcTask Outputs^MAIN.fbN2_01.fbValveRelay.rawOutputRelayChan3" VarB="Channel 2^Output" AutoLink="true" Size="1"/>
+				<Link VarA="PlcTask Outputs^MAIN.fbN2_Left.fbValveRelay.rawOutputRelayChan1" VarB="Channel 3^Output" AutoLink="true" Size="1"/>
+				<Link VarA="PlcTask Outputs^MAIN.fbN2_Left.fbValveRelay.rawOutputRelayChan3" VarB="Channel 4^Output" AutoLink="true" Size="1"/>
+				<Link VarA="PlcTask Outputs^MAIN.fbN2_Right.fbValveRelay.rawOutputRelayChan1" VarB="Channel 1^Output" AutoLink="true" Size="1"/>
+				<Link VarA="PlcTask Outputs^MAIN.fbN2_Right.fbValveRelay.rawOutputRelayChan3" VarB="Channel 2^Output" AutoLink="true" Size="1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)">
-				<Link VarA="PlcTask Inputs^MAIN.fbN2_01.fbValveRelay.bCloseRBV" VarB="Channel 1^Input" AutoLink="true" Size="1"/>
-				<Link VarA="PlcTask Inputs^MAIN.fbN2_01.fbValveRelay.bMovingRBV" VarB="Channel 3^Input" AutoLink="true" Size="1"/>
-				<Link VarA="PlcTask Inputs^MAIN.fbN2_01.fbValveRelay.bOpenRBV" VarB="Channel 2^Input" AutoLink="true" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_Right.fbValveRelay.bCloseRBV" VarB="Channel 1^Input" AutoLink="true" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_Right.fbValveRelay.bMovingRBV" VarB="Channel 3^Input" AutoLink="true" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_Right.fbValveRelay.bOpenRBV" VarB="Channel 2^Input" AutoLink="true" Size="1"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>
