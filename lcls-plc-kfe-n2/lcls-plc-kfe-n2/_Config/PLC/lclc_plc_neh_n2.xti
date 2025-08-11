@@ -1,23 +1,7 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
 	<Project GUID="{E7B2A131-7601-4CB6-9E2A-2C803CB2E77E}" Name="lclc_plc_neh_n2" PrjFilePath="..\..\lclc_plc_neh_n2\lclc_plc_neh_n2.plcproj" TmcFilePath="..\..\lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{A78A1EFB-4DBA-4126-B7B2-640EF0A29567}">
-=======
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{1673B273-1769-2E0D-D447-2AB830B4369D}">
->>>>>>> 1032373 (inital state machine for main)
-=======
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{17000A49-662C-CC4F-AF9C-0613FF2DE37B}">
->>>>>>> e47d4aa (Fb Valve use Enum and restructure)
-=======
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{4CC7190D-25CC-21A3-5285-E9DF8B716C69}">
->>>>>>> f497707 (CHANGE LED TOWER ENUMS and Inital Code)
-=======
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{25ECB686-4027-E6E2-08B7-156AA1B0F3F4}">
->>>>>>> b7ba6d2 (linked new io, fixed weight calculation)
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{BB45C790-9F02-4A69-F1C2-ED36B905EE83}">
 			<Name>lclc_plc_neh_n2 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -27,19 +11,8 @@
 					<Type>INT</Type>
 				</Var>
 				<Var>
-<<<<<<< HEAD
-					<Name>MAIN.fbN2_01.bInduceButton</Name>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 					<Name>MAIN.fbN2_Left.bInduceButton</Name>
->>>>>>> b7ba6d2 (linked new io, fixed weight calculation)
 					<Comment><![CDATA[ WILL KEEP AS PVS FOR NOW, CAN BE PHYSICAL BUTTONS AT SOME POINT]]></Comment>
-=======
->>>>>>> e47d4aa (Fb Valve use Enum and restructure)
-=======
-					<Comment><![CDATA[ WILL KEEP AS PVS FOR NOW, CAN BE PHYSICAL BUTTONS AT SOME POINT]]></Comment>
->>>>>>> f497707 (CHANGE LED TOWER ENUMS and Inital Code)
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
@@ -59,15 +32,7 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> f497707 (CHANGE LED TOWER ENUMS and Inital Code)
-					<Name>MAIN.fbN2_01.fbLEDTower.bGreenPin</Name>
-=======
 					<Name>MAIN.fbN2_Left.fbLEDTower.bGreenPin</Name>
->>>>>>> b7ba6d2 (linked new io, fixed weight calculation)
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
@@ -79,16 +44,6 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> e47d4aa (Fb Valve use Enum and restructure)
-=======
->>>>>>> f497707 (CHANGE LED TOWER ENUMS and Inital Code)
-					<Name>MAIN.fbN2_01.fbGetmA.iRaw</Name>
-					<Comment><![CDATA[ Connect this input to the terminal]]></Comment>
-					<Type>DINT</Type>
-=======
 					<Name>MAIN.fbN2_Left.iPressRaw</Name>
 					<Type>INT</Type>
 				</Var>
@@ -132,7 +87,6 @@
 				<Var>
 					<Name>MAIN.fbN2_Right.iPressRaw</Name>
 					<Type>INT</Type>
->>>>>>> b7ba6d2 (linked new io, fixed weight calculation)
 				</Var>
 			</Vars>
 			<Vars VarGrpType="2" AreaNo="1">

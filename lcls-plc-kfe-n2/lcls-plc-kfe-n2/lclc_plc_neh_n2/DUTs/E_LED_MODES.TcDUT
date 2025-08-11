@@ -5,8 +5,8 @@
 {attribute 'strict'}
 TYPE E_LED_MODES :
 (
-	OFF := 0,
-	GREEN := 1,
+    OFF := 0,
+    GREEN := 1,
     YELLOW := 2,
     RED := 3
 );

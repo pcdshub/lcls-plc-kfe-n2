@@ -3,6 +3,7 @@
   <POU Name="FB_VALVE_RELAY" Id="{e2531ff2-ea72-4542-bd8f-7299f2dc48b9}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_VALVE_RELAY
 VAR_IN_OUT
+    tActuateTime : TIME ;
 END_VAR
 VAR_INPUT
 END_VAR
@@ -10,7 +11,7 @@ VAR_OUTPUT
     bTimerQ : BOOL;
 END_VAR
 VAR
-	{attribute 'pytmc' := 'pv: OPN_SW'}
+    {attribute 'pytmc' := 'pv: OPN_SW'}
     b_open : BOOL; // control variable
     // EL2624 Relayu Logic Here
 
@@ -19,11 +20,8 @@ VAR
     bCloseRBV AT %I* : BOOL;
     bOpenRBV AT %I* : BOOL;
     bMovingRBV AT %I* : BOOL;
-
-    tActuateTime : TIME := T#24h;
-    iState: INT;
+    iState: E_VALVE_RELAY_STATES := E_VALVE_RELAY_STATES.INIT;
     fbValveTimer : TON;
-	bPrevState : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -32,20 +30,23 @@ fbValveTimer(IN:=TRUE, PT:=tActuateTime);
 
 CASE iState OF
     E_VALVE_RELAY_STATES.INIT: // INIT
-	IF fbValveTimer.Q THEN b_open := bPrevState; END_IF
+    IF fbValveTimer.Q THEN ACTUATE_VALVE(TRUE); END_IF
     fbValveTimer(IN:=FALSE); //RESTART TIMER
     iState := E_VALVE_RELAY_STATES.NOMINAL;
-	
+
     E_VALVE_RELAY_STATES.NOMINAL: // NOMINAL
     ACTUATE_VALVE(b_open);
-    IF fbValveTimer.Q THEN 
-		iState := E_VALVE_RELAY_STATES.ACTUATE; 
-		bPrevState := b_open;
-	END_IF
+
+    // ONLY ACTUATE VALVE IF ITS OPEN
+    IF fbValveTimer.Q AND bOpenRBV AND NOT bCloseRBV THEN
+        iState := E_VALVE_RELAY_STATES.ACTUATE;
+    ELSIF fbValveTimer.Q AND NOT bOpenRBV AND bCloseRBV THEN
+        fbValveTimer(IN:=FALSE); //RESTART TIMER
+    END_IF
+
 
     E_VALVE_RELAY_STATES.ACTUATE: // Do the opposite of current valve state
-    IF bCloseRBV AND NOT bOpenRBV AND NOT bMovingRBV THEN ACTUATE_VALVE(TRUE);END_IF
-	IF NOT bCloseRBV AND bOpenRBV AND NOT bMovingRBV THEN ACTUATE_VALVE(FALSE);END_IF
+    ACTUATE_VALVE(FALSE);
     IF bMovingRBV THEN iState := E_VALVE_RELAY_STATES.WAIT; END_IF; // Only transition when we have started to move
 
     E_VALVE_RELAY_STATES.WAIT: // Go back to init to reset timer and return valve to previous state.
