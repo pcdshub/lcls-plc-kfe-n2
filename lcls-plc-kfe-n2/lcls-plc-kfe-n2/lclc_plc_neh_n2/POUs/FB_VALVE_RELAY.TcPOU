@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_VALVE_RELAY" Id="{e2531ff2-ea72-4542-bd8f-7299f2dc48b9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_VALVE_RELAY
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+    b_open : BOOL; // control variable
+    // EL2624 Relayu Logic Here
+
+    rawOutputRelayChan1 AT %Q*: BOOL;
+    rawOutputRelayChan3 AT %Q*: BOOL;
+    bCloseRBV AT %I* : BOOL;
+    bOpenRBV AT %I* : BOOL;
+    bMovingRBV AT %I* : BOOL;
+
+    tActuateTime : TIME := T#24h;
+    fbValveTimer : TON;
+    iState: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+
+fbValveTimer(IN:=TRUE, PT:=tActuateTime); //RESTART TIMER
+
+CASE iState OF
+    0: // INIT
+    fbValveTimer(IN:=FALSE); //RESTART TIMER
+    iState := 1;
+
+    1: // NOMINAL
+    ACTUATE_VALVE(b_open);
+
+    IF fbValveTimer.Q THEN iState := 2; END_IF
+
+    2: // Do the opposite of current valve state
+    IF bCloseRBV THEN ACTUATE_VALVE(TRUE);END_IF
+    IF bOpenRBV THEN ACTUATE_VALVE(FALSE);END_IF
+    IF bMovingRBV THEN iState := 3; END_IF; // Only transition when we have started to move
+
+    3: // Go back to init to reset timer and return valve to previous state.
+    IF NOT bMovingRBV THEN iState := 0; END_IF;
+
+END_CASE
+
+]]></ST>
+    </Implementation>
+    <Method Name="ACTUATE_VALVE" Id="{919e3d16-476c-4acf-ad5c-4fabd5d630e2}">
+      <Declaration><![CDATA[METHOD ACTUATE_VALVE : BOOL
+VAR_INPUT
+    b_open: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF b_open THEN
+    rawOutputRelayChan1 := FALSE;
+    rawOutputRelayChan3 := TRUE;
+ELSE
+    rawOutputRelayChan1 := TRUE;
+    rawOutputRelayChan3 := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
