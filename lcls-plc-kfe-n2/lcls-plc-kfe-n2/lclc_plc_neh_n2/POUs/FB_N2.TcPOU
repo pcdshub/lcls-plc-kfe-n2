@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_N2" Id="{aeb2ab87-fb12-4b59-baa6-7d020d5a4fa4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_N2
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+
+    rawInputmA AT %I*: INT;
+	
+	// WILL KEEP AS PVS FOR NOW, CAN BE PHYSICAL BUTTONS AT SOME POINT
+	{attribute 'pytmc' := 'pv: START_EXCHANGE'}
+    bInduceButton AT %I*	: BOOL;
+	{attribute 'pytmc' := 'pv: FINISH_EXCHANGE'}
+    bFinishExchangeButton AT %I*	: BOOL;
+
+    fbValveRelay 	: FB_VALVE_RELAY;
+    fbLEDTower		: FB_LED_TOWER;
+    fbGetmA: FB_AnalogInput;
+
+
+    {attribute 'pytmc' := 'pv: MAX_MASS'}
+    maxMass: LREAL;
+    {attribute 'pytmc' := 'pv: MIN_MASS'}
+    minMass: LREAL;
+    {attribute 'pytmc' := 'pv: MASS'}
+    fMassofGas: LREAL;
+    fmA: LREAL;
+	
+	{attribute 'pytmc' := 'pv: PRESSURE'}
+    fPress : LREAL;
+	
+    // WILL NEED SOME SENSABLE DEFAULT HERE?
+    fMinPressureThresh 		: LREAL ;
+    fMinMassThresh			: LREAL;
+    fWarningThresh: LREAL;
+    //
+    eLEDMode : E_LED_MODES;
+    bValveTimerQ : BOOL;
+    bInit : BOOL := TRUE;
+    iState : INT  := 0;
+	bFlashFlag : BOOL := FALSE;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bInit THEN
+    bInit := FALSE;
+END_IF
+
+fbValveRelay(bTimerQ=>bValveTimerQ);
+fbLEDTower(eLEDMode := eLEDMode, tFlashInterval:= T#1s, bFlashing:=bFlashFlag);
+
+fbGetmA(
+    iRaw := rawInputmA,
+    iTermBits := 12,
+    fTermMax := 20,
+    fTermMin := 4,
+    fReal => fmA
+);
+
+fMassofGas := (fmA - 4.0) / 16.0 * maxMass + minMass;
+
+CASE iState OF
+    E_MAIN_STATE_MACHINE.INIT: // INIT
+    fbValveRelay.ACTUATE_VALVE(FALSE);
+    IF ((fPress > fMinPressureThresh) AND (fmA > fMinMassThresh)) THEN
+        fbValveRelay.ACTUATE_VALVE(TRUE);
+    END_IF
+    iState := E_MAIN_STATE_MACHINE.NOMINAL;
+
+    E_MAIN_STATE_MACHINE.NOMINAL: // Nominal
+    IF  ((fPress < fMinPressureThresh) OR (fmA < fMinMassThresh) OR (bInduceButton)) THEN
+		// SOLID RED
+        eLEDMode := E_LED_MODES.RED;
+		bFlashFlag := FALSE;
+        iState := E_MAIN_STATE_MACHINE.EXCHANGE_MODE;
+        fbValveRelay.ACTUATE_VALVE(FALSE);
+    END_IF
+
+    IF (fmA < fWarningThresh) THEN
+		// SOLID YELLOW
+        eLEDMode := E_LED_MODES.YELLOW;
+		bFlashFlag := FALSE;
+    END_IF
+
+    IF(bValveTimerQ) THEN
+		// FLASHING YELLOW
+        eLEDMode := E_LED_MODES.YELLOW;
+		bFlashFlag := TRUE;
+    END_IF
+
+    E_MAIN_STATE_MACHINE.EXCHANGE_MODE: // EXCHANGE MODE
+    IF (bInduceButton) THEN
+		// FLASHING RED 
+        eLEDMode := E_LED_MODES.RED;
+		bFlashFlag := TRUE;
+    END_IF
+    IF  ((bFinishExchangeButton)) THEN
+        iState := E_MAIN_STATE_MACHINE.INIT;
+		// SOLID GREEN
+        eLEDMode := E_LED_MODES.GREEN;
+		bFlashFlag := FALSE;
+    END_IF
+
+END_CASE]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

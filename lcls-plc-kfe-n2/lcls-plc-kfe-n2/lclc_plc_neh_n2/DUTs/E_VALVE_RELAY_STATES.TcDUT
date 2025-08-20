@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="E_VALVE_RELAY_STATES" Id="{3fe18133-ed3e-40a2-854b-0f421111bb1e}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_VALVE_RELAY_STATES :
+(
+    INIT := 0,
+    NOMINAL := 1,
+    ACTUATE := 2,
+    WAIT := 3
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

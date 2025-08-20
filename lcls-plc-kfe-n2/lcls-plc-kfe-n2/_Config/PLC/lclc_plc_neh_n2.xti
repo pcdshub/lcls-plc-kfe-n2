@@ -1,42 +1,63 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
 	<Project GUID="{E7B2A131-7601-4CB6-9E2A-2C803CB2E77E}" Name="lclc_plc_neh_n2" PrjFilePath="..\..\lclc_plc_neh_n2\lclc_plc_neh_n2.plcproj" TmcFilePath="..\..\lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{89FF6F01-3153-2C14-6A22-0A26DF51D8E9}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="lclc_plc_neh_n2\lclc_plc_neh_n2.tmc" TmcHash="{A78A1EFB-4DBA-4126-B7B2-640EF0A29567}">
 			<Name>lclc_plc_neh_n2 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
-					<Name>MAIN.rawInputmA</Name>
+					<Name>MAIN.fbN2_01.rawInputmA</Name>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>MAIN.fbGetmA.iRaw</Name>
+					<Name>MAIN.fbN2_01.bInduceButton</Name>
+					<Comment><![CDATA[ WILL KEEP AS PVS FOR NOW, CAN BE PHYSICAL BUTTONS AT SOME POINT]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_01.bFinishExchangeButton</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_01.fbValveRelay.bCloseRBV</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_01.fbValveRelay.bOpenRBV</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_01.fbValveRelay.bMovingRBV</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_01.fbLEDTower.bGreenPin</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_01.fbLEDTower.bYellowPin</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_01.fbLEDTower.bRedPin</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbN2_01.fbGetmA.iRaw</Name>
 					<Comment><![CDATA[ Connect this input to the terminal]]></Comment>
 					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>MAIN.fbValveRelay.bCloseRBV</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>MAIN.fbValveRelay.bOpenRBV</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>MAIN.fbValveRelay.bMovingRBV</Name>
-					<Type>BOOL</Type>
 				</Var>
 			</Vars>
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>MAIN.fbValveRelay.rawOutputRelayChan1</Name>
+					<Name>MAIN.fbN2_01.fbValveRelay.rawOutputRelayChan1</Name>
 					<Comment><![CDATA[ EL2624 Relayu Logic Here]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>MAIN.fbValveRelay.rawOutputRelayChan3</Name>
+					<Name>MAIN.fbN2_01.fbValveRelay.rawOutputRelayChan3</Name>
 					<Type>BOOL</Type>
 				</Var>
 			</Vars>
@@ -59,16 +80,15 @@
 	<Mappings>
 		<OwnerA Name="lclc_plc_neh_n2 Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)">
-				<Link VarA="PlcTask Inputs^MAIN.rawInputmA" VarB="AI Standard Channel 1^Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_01.rawInputmA" VarB="AI Standard Channel 1^Value" AutoLink="true"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)">
-				<Link VarA="PlcTask Outputs^MAIN.fbValveRelay.rawOutputRelayChan1" VarB="Channel 1^Output" AutoLink="true" Size="1"/>
-				<Link VarA="PlcTask Outputs^MAIN.fbValveRelay.rawOutputRelayChan3" VarB="Channel 2^Output" AutoLink="true" Size="1"/>
+				<Link VarA="PlcTask Outputs^MAIN.fbN2_01.fbValveRelay.rawOutputRelayChan3" VarB="Channel 2^Output" AutoLink="true" Size="1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)">
-				<Link VarA="PlcTask Inputs^MAIN.fbValveRelay.bCloseRBV" VarB="Channel 1^Input" AutoLink="true" Size="1"/>
-				<Link VarA="PlcTask Inputs^MAIN.fbValveRelay.bMovingRBV" VarB="Channel 3^Input" AutoLink="true" Size="1"/>
-				<Link VarA="PlcTask Inputs^MAIN.fbValveRelay.bOpenRBV" VarB="Channel 2^Input" AutoLink="true" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_01.fbValveRelay.bCloseRBV" VarB="Channel 1^Input" AutoLink="true" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_01.fbValveRelay.bMovingRBV" VarB="Channel 3^Input" AutoLink="true" Size="1"/>
+				<Link VarA="PlcTask Inputs^MAIN.fbN2_01.fbValveRelay.bOpenRBV" VarB="Channel 2^Input" AutoLink="true" Size="1"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>
