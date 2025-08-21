@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_VALVE_RELAY" Id="{e2531ff2-ea72-4542-bd8f-7299f2dc48b9}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_VALVE_RELAY
 VAR_IN_OUT
+    tActuateTime : TIME ;
 END_VAR
 VAR_INPUT
 END_VAR
@@ -10,6 +11,7 @@ VAR_OUTPUT
     bTimerQ : BOOL;
 END_VAR
 VAR
+    {attribute 'pytmc' := 'pv: OPN_SW'}
     b_open : BOOL; // control variable
     // EL2624 Relayu Logic Here
 
@@ -18,9 +20,7 @@ VAR
     bCloseRBV AT %I* : BOOL;
     bOpenRBV AT %I* : BOOL;
     bMovingRBV AT %I* : BOOL;
-
-    tActuateTime : TIME := T#24h;
-    iState: INT;
+    iState: E_VALVE_RELAY_STATES := E_VALVE_RELAY_STATES.INIT;
     fbValveTimer : TON;
 END_VAR
 ]]></Declaration>
@@ -30,17 +30,23 @@ fbValveTimer(IN:=TRUE, PT:=tActuateTime);
 
 CASE iState OF
     E_VALVE_RELAY_STATES.INIT: // INIT
+    IF fbValveTimer.Q THEN ACTUATE_VALVE(TRUE); END_IF
     fbValveTimer(IN:=FALSE); //RESTART TIMER
     iState := E_VALVE_RELAY_STATES.NOMINAL;
 
     E_VALVE_RELAY_STATES.NOMINAL: // NOMINAL
     ACTUATE_VALVE(b_open);
 
-    IF fbValveTimer.Q THEN iState := E_VALVE_RELAY_STATES.ACTUATE; END_IF
+    // ONLY ACTUATE VALVE IF ITS OPEN
+    IF fbValveTimer.Q AND bOpenRBV AND NOT bCloseRBV THEN
+        iState := E_VALVE_RELAY_STATES.ACTUATE;
+    ELSIF fbValveTimer.Q AND NOT bOpenRBV AND bCloseRBV THEN
+        fbValveTimer(IN:=FALSE); //RESTART TIMER
+    END_IF
+
 
     E_VALVE_RELAY_STATES.ACTUATE: // Do the opposite of current valve state
-    IF bCloseRBV THEN ACTUATE_VALVE(TRUE);END_IF
-    IF bOpenRBV THEN ACTUATE_VALVE(FALSE);END_IF
+    ACTUATE_VALVE(FALSE);
     IF bMovingRBV THEN iState := E_VALVE_RELAY_STATES.WAIT; END_IF; // Only transition when we have started to move
 
     E_VALVE_RELAY_STATES.WAIT: // Go back to init to reset timer and return valve to previous state.
@@ -53,11 +59,13 @@ bTimerQ := fbValveTimer.Q;]]></ST>
     <Method Name="ACTUATE_VALVE" Id="{919e3d16-476c-4acf-ad5c-4fabd5d630e2}">
       <Declaration><![CDATA[METHOD ACTUATE_VALVE : BOOL
 VAR_INPUT
-    b_open: BOOL;
+    open: BOOL;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF b_open THEN
+        <ST><![CDATA[b_open := open;
+
+IF b_open THEN
     rawOutputRelayChan1 := FALSE;
     rawOutputRelayChan3 := TRUE;
 ELSE
@@ -65,7 +73,7 @@ ELSE
     rawOutputRelayChan3 := FALSE;
 END_IF
 
-]]></ST>
+IF bMovingRBV THEN iState := E_VALVE_RELAY_STATES.WAIT; END_IF; // Only transition when we have started to move]]></ST>
       </Implementation>
     </Method>
   </POU>

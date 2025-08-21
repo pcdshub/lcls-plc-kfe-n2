@@ -4,51 +4,50 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_LED_TOWER
 VAR_INPUT
     eLEDMode : E_LED_MODES;
-	tFlashInterval : TIME;
-	bFlashing : BOOL := FALSE;
-	
+    tFlashInterval : TIME;
+    bFlashing : BOOL := FALSE;
+
 END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	bGreenPin AT %I* : BOOL;
-	bYellowPin AT %I* : BOOL;
-	bRedPin AT %I* : BOOL;
-	
-	tLEDFLashTimerON : TON;
-	tLEDFLashTimerOFF : TOF;
-	
-	
+    bGreenPin AT %I* : BOOL;
+    bYellowPin AT %I* : BOOL;
+    bRedPin AT %I* : BOOL;
+
+    tLEDFLashTimerON : TON;
+    tLEDFLashTimerOFF : TOF;
+
+
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF eLEDMode = E_LED_MODES.OFF THEN
-	bGreenPin := FALSE;
-	bYellowPin := FALSE;
-	bRedPin := FALSE;
-	RETURN;
+    bGreenPin := FALSE;
+    bYellowPin := FALSE;
+    bRedPin := FALSE;
+    RETURN;
 END_IF
 
 tLEDFLashTimerON(IN:=bFlashing, PT:=tFlashInterval);
 tLEDFLashTimerOFF(IN:= NOT tLEDFLashTimerON.Q, PT:=tFlashInterval);
 
+bGreenPin := FALSE;
+bYellowPin := FALSE;
+bRedPin := FALSE;
+
 CASE eLEDMode OF
-	E_LED_MODES.GREEN:
-		bGreenPin := NOT bFlashing OR tLEDFLashTimerON.Q;
-		bYellowPin := FALSE;
-		bRedPin := FALSE;
-	E_LED_MODES.YELLOW:
-		bGreenPin := FALSE;
-		bYellowPin := NOT bFlashing OR tLEDFLashTimerON.Q;
-		bRedPin := FALSE;
-	E_LED_MODES.RED:
-		bGreenPin := FALSE;
-		bYellowPin := FALSE;
-		bRedPin :=  NOT bFlashing OR tLEDFLashTimerON.Q;
+    E_LED_MODES.GREEN:
+        bGreenPin := NOT bFlashing OR tLEDFLashTimerON.Q;
+    E_LED_MODES.YELLOW:
+        bYellowPin := NOT bFlashing OR tLEDFLashTimerON.Q;
+        bRedPin := FALSE;
+    E_LED_MODES.RED:
+        bRedPin :=  NOT bFlashing OR tLEDFLashTimerON.Q;
 END_CASE
 
 IF NOT tLEDFLashTimerOFF.Q THEN
-	tLEDFLashTimerON(IN:=FALSE); 
+    tLEDFLashTimerON(IN:=FALSE);
 END_IF
 ]]></ST>
     </Implementation>

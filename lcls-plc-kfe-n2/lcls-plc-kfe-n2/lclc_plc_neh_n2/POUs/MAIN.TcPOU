@@ -1,13 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="MAIN" Id="{33620bff-f8ff-418a-9b35-0303bd8eb7b6}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+    {attribute 'pytmc' := 'pv: KFE:N2:01'}
     {attribute 'TcLinkTo' := '
         .rawInputmA := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 1^Value;
-        .bInduceButton :=
-        .bFinishExchangeButton :=
+        .iPressRaw := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EL3052)^AI Standard Channel 1^Value;
+        .fbValveRelay.rawOutputRelayChan1 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 3^Output;
+        .fbValveRelay.rawOutputRelayChan3 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 4^Output;
+        .fbValveRelay.bCloseRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 14 (EL1004)^Channel 1^Input;
+        .fbValveRelay.bOpenRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 14 (EL1004)^Channel 2^Input;
+        .fbValveRelay.bMovingRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 14 (EL1004)^Channel 3^Input;
 
+    '}
+    fbN2_Left : FB_N2;
+
+        {attribute 'pytmc' := 'pv: KFE:N2:02'}
+    {attribute 'TcLinkTo' := '
+        .rawInputmA := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL3052)^AI Standard Channel 2^Value;
+        .iPressRaw := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EL3052)^AI Standard Channel 2^Value;
         .fbValveRelay.rawOutputRelayChan1 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 1^Output;
         .fbValveRelay.rawOutputRelayChan3 := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EL2624)^Channel 2^Output;
         .fbValveRelay.bCloseRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 1^Input;
@@ -15,12 +27,13 @@ VAR
         .fbValveRelay.bMovingRBV := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL1004)^Channel 3^Input;
 
     '}
-    fbN2_01 : FB_N2;
+    fbN2_Right : FB_N2;
 
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbN2_01();]]></ST>
+      <ST><![CDATA[fbN2_Left(tActuateTime:=T#24h);
+fbN2_Right(tActuateTime:= T#23h);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
